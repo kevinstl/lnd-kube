@@ -3,7 +3,9 @@ FROM golang:1.10-alpine as builder
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
 # Copy in the local repository to build from.
-COPY . /go/src/github.com/lightningnetwork/lnd
+#COPY . /go/src/github.com/lightningnetwork/lnd
+
+RUN git clone https://github.com//lightningnetwork/lnd.git .
 
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
@@ -32,8 +34,8 @@ RUN apk add --no-cache \
     bash
 
 # Copy the entrypoint script.
-#COPY "docker/lnd/start-lnd.sh" .
-COPY "start-lnd.sh" .
+COPY "docker/lnd/start-lnd.sh" .
+#COPY "start-lnd.sh" .
 RUN chmod +x start-lnd.sh
 
 ENTRYPOINT ["/start-lnd.sh"]
