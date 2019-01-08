@@ -1,0 +1,31 @@
+apiVersion: skaffold/v1alpha2
+kind: Config
+build:
+  tagPolicy:
+    envTemplate:
+      template: "{{.DOCKER_REGISTRY}}/kevinstl/lightning-kube-lnd:{{.VERSION}}"
+  artifacts:
+  - imageName: changeme
+    workspace: .
+    docker: {}
+  local: {}
+deploy:
+  kubectl:
+    manifests:
+profiles:
+- name: dev
+  build:
+    tagPolicy:
+      envTemplate:
+        template: "{{.DOCKER_REGISTRY}}/kevinstl/lightning-kube-lnd:{{.DIGEST_HEX}}"
+    artifacts:
+    - docker: {}
+    local: {}
+  deploy:
+    helm:
+      releases:
+      - name: lightning-kube-lnd
+        chartPath: charts/lightning-kube-lnd
+        setValueTemplates:
+          image.repository: "{{.DOCKER_REGISTRY}}/kevinstl/lightning-kube-lnd"
+          image.tag: "{{.DIGEST_HEX}}"
