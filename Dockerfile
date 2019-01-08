@@ -11,7 +11,7 @@ RUN apk add --no-cache git
 
 #WORKDIR $GOPATH/src/github.com/lightningnetwork/lnd
 
-RUN git clone https://github.com/lightningnetwork/lnd.git $GOPATH/src/github.com/lightningnetwork
+RUN git clone https://github.com/lightningnetwork/lnd.git $GOPATH/src/github.com/lightningnetwork/lnd
 
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
