@@ -11,7 +11,7 @@ RUN apk add --no-cache git
 
 #WORKDIR $GOPATH/src/github.com/lightningnetwork/lnd
 
-RUN git clone https://github.com/lightningnetwork/lnd.git $GOPATH/src/github.com/lightningnetwork/lnd
+RUN git clone https://github.com/lightningnetwork/lnd.git /go/src/github.com/lightningnetwork/lnd
 
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
@@ -42,6 +42,6 @@ RUN apk add --no-cache \
 # Copy the entrypoint script.
 #COPY "docker/lnd/start-lnd.sh" .
 #COPY "start-lnd.sh" .
-RUN chmod +x $GOPATH/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh
+RUN chmod +x /go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh
 
-ENTRYPOINT ["$GOPATH/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh"]
+ENTRYPOINT ["/go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh"]
