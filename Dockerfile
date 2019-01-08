@@ -2,6 +2,10 @@ FROM golang:1.10-alpine as builder
 
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
+
+# Install build dependencies such as git and glide.
+RUN apk add --no-cache git
+
 # Copy in the local repository to build from.
 #COPY . /go/src/github.com/lightningnetwork/lnd
 
