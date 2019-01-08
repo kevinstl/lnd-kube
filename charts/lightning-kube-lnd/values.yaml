@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: 10.99.211.147:5000/kevinstl/lightning-kube-lnd
-  tag: 0.0.14
+  tag: 0.0.15
   pullPolicy: IfNotPresent
 service:
   name: lightning-kube-lnd
