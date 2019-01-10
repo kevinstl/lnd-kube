@@ -4,7 +4,7 @@ MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
 
 # Install build dependencies such as git and glide.
-RUN apk add --no-cache git
+#RUN apk add --no-cache git
 
 # Copy in the local repository to build from.
 #COPY . /go/src/github.com/lightningnetwork/lnd
@@ -27,6 +27,7 @@ RUN apk add --no-cache \
 &&  cd /go/src/github.com/lightningnetwork/lnd \
 &&  pwd \
 &&  ls \
+&&  go get -d ./... \
 &&  make \
 &&  make install
 
