@@ -16,9 +16,11 @@ RUN apk add --no-cache \
     make \
 &&  git clone https://github.com/lightningnetwork/lnd.git /go/src/github.com/lightningnetwork/lnd \
 &&  cd /go/src/github.com/lightningnetwork/lnd \
+&&  ls -al \
 &&  cd /go/src/github.com/lightningnetwork/lnd/docker \
+&&  ls -al \
 &&  cd /go/src/github.com/lightningnetwork/lnd/docker/lnd \
-&&  ls -al
+&&  ls -al \
 &&  go get -d ./... \
 &&  make \
 &&  make install
