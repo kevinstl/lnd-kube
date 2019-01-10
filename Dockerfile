@@ -24,6 +24,8 @@ ENV GODEBUG netdns=cgo
 
 #RUN echo "199.232.8.249 dl-cdn.alpinelinux.org" >> /etc/hosts
 
+RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/http\:\/\/mirror.clarkson.edu/g' /etc/apk/repositories
+
 #RUN apk update \
 #&&  apk add --no-cache \
 #RUN sed -i -e 's/dl-cdn/dl-4/' /etc/apk/repositories && \
