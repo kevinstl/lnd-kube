@@ -18,7 +18,9 @@ MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 ENV GODEBUG netdns=cgo
 
 # Install dependencies and install/build lnd.
-RUN apk add --no-cache \
+#RUN apk add --no-cache \
+RUN apk update \
+&&  apk add --no-cache \
     git \
     make \
 &&  pwd \
