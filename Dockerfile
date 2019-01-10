@@ -22,10 +22,12 @@ ENV GODEBUG netdns=cgo
 
 # Install dependencies and install/build lnd.
 
+RUN echo "199.232.8.249 dl-cdn.alpinelinux.org" >> /etc/hosts
+
 #RUN apk update \
-#&&  apk add --no-cache \
-RUN sed -i -e 's/dl-cdn/dl-4/' /etc/apk/repositories && \
-    apk add --no-cache \
+&&  apk add --no-cache \
+#RUN sed -i -e 's/dl-cdn/dl-4/' /etc/apk/repositories && \
+#    apk add --no-cache \
         bash \
         build-base \
     git \
