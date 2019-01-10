@@ -21,9 +21,13 @@ ENV GODEBUG netdns=cgo
 #    echo http://mirror.yandex.ru/mirrors/alpine/v3.5/community >> /etc/apk/repositories
 
 # Install dependencies and install/build lnd.
-RUN apk add --no-cache \
+
 #RUN apk update \
-&&  apk add --no-cache \
+#&&  apk add --no-cache \
+RUN sed -i -e 's/dl-cdn/dl-4/' /etc/apk/repositories && \
+    apk add --no-cache \
+        bash \
+        build-base \
     git \
     make \
 &&  pwd \
