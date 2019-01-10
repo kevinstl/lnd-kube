@@ -1,4 +1,4 @@
-FROM golang:1.10-alpine as builder
+FROM golang:1.11-alpine as builder
 
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
@@ -17,12 +17,12 @@ MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 # queries required to connect to linked containers succeed.
 ENV GODEBUG netdns=cgo
 
-RUN echo http://mirror.yandex.ru/mirrors/alpine/v3.5/main > /etc/apk/repositories; \
-    echo http://mirror.yandex.ru/mirrors/alpine/v3.5/community >> /etc/apk/repositories
+#RUN echo http://mirror.yandex.ru/mirrors/alpine/v3.5/main > /etc/apk/repositories; \
+#    echo http://mirror.yandex.ru/mirrors/alpine/v3.5/community >> /etc/apk/repositories
 
 # Install dependencies and install/build lnd.
-#RUN apk add --no-cache \
-RUN apk update \
+RUN apk add --no-cache \
+#RUN apk update \
 &&  apk add --no-cache \
     git \
     make \
