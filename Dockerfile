@@ -26,10 +26,12 @@ ENV GODEBUG netdns=cgo
 
 #RUN sed -i 's/http\:\/\/dl-cdn.alpinelinux.org/http\:\/\/mirror.clarkson.edu/g' /etc/apk/repositories
 
-RUN echo 'https://dl-3.alpinelinux.org/alpine/v3.4/main' > /etc/apk/repositories  && \
-    echo '@testing https://dl-3.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
-    echo '@community https://dl-3.alpinelinux.org/alpine/v3.4/community'
+#RUN echo 'https://dl-3.alpinelinux.org/alpine/v3.4/main' > /etc/apk/repositories  && \
+#    echo '@testing https://dl-3.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
+#    echo '@community https://dl-3.alpinelinux.org/alpine/v3.4/community'
 
+RUN export http_proxy=http://proxyhost:proxyport
+RUN export HTTP_PROXY_AUTH=basic:*:proxyuser:proxypass
 
 #RUN apk update \
 #&&  apk add --no-cache \
