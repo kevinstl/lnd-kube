@@ -157,14 +157,14 @@ def release(branch) {
     sh "jx step git credentials"
 
     // so we can retrieve the version in later steps
-//    sh "echo \$(jx-release-version) > VERSION"
-    sh "echo \$(cat ../../VERSION) > VERSION"
+    sh "echo \$(jx-release-version) > VERSION"
+//    sh "echo \$(cat ../../VERSION) > VERSION"
 //    sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
   }
 
   dir ('./charts/lightning-kube-lnd') {
     container('go') {
-      sh "make tag"
+//      sh "make tag"
     }
   }
 
