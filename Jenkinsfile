@@ -157,7 +157,8 @@ def release(branch) {
     sh "jx step git credentials"
 
     // so we can retrieve the version in later steps
-    sh "echo \$(jx-release-version) > VERSION"
+//    sh "echo \$(jx-release-version) > VERSION"
+    sh "echo \$(cat ../../VERSION) > VERSION"
 //    sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
   }
 

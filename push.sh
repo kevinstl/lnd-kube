@@ -10,19 +10,22 @@ then
 
     ls -al
 
-    git add .
+#    git add .
 
     git checkout $branch
 
-    git commit -m "pushing from local jenkins"
+#    git commit -m "pushing from local jenkins"
 
-#    git pull origin
-    git pull origin $branch
+    git pull origin
+#    git pull origin $branch
 #    git fetch origin $branch
 
 
 #    git push -u origin $branch
-    git push $branch
+
+#    git remote add local /host-home/Developer/projects/lightning-kube-lnd
+
+#    git push local $branch
     git push origin $branch
 fi
 
