@@ -65,7 +65,9 @@ COPY --from=builder /go/bin/lnd /bin/
 
 # Add bash.
 RUN apk add --no-cache \
-    bash
+    bash \
+    git \
+&&  git clone https://github.com/lightningnetwork/lnd.git /go/src/github.com/lightningnetwork/lnd
 
 # Copy the entrypoint script.
 #COPY "docker/lnd/start-lnd.sh" .
