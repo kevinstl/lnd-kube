@@ -20,7 +20,6 @@ then
     git pull origin $branch
 #    git fetch origin $branch
 
-
 #    git push -u origin $branch
 
 #    git remote add local /host-home/Developer/projects/lightning-kube-lnd
