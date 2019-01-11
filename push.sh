@@ -12,7 +12,8 @@ then
 
     git checkout $branch
 
-    git pull origin
+#    git pull origin
+    git pull
 
     git push -u origin $branch
 fi
