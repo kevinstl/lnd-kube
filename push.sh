@@ -16,8 +16,8 @@ then
 
 #    git commit -m "pushing from local jenkins"
 
-    git pull origin
-#    git pull origin $branch
+#    git pull origin
+    git pull origin $branch
 #    git fetch origin $branch
 
 
