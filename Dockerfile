@@ -45,4 +45,6 @@ RUN apk add --no-cache \
 RUN ls -al /go/src/github.com/lightningnetwork/lnd/docker/lnd
 RUN chmod +x /go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh
 
+COPY "docker/lnd.conf" /root/.lnd/
+
 ENTRYPOINT ["/go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh"]
