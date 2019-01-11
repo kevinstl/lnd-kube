@@ -8,7 +8,8 @@ ENV GODEBUG netdns=cgo
 
 # Install dependencies and install/build lnd.
 RUN apk add --no-cache \
-    gcc \
+    bash \
+    build-base \
     git \
     make \
 &&  pwd \
