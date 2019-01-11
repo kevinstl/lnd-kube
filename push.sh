@@ -14,11 +14,12 @@ then
 
     git checkout $branch
 
+    git commit -m "pushing from local jenkins"
+
 #    git pull origin
     git pull origin $branch
 #    git fetch origin $branch
 
-    git commit -m "pushing from local jenkins"
 
 #    git push -u origin $branch
     git push origin $branch
