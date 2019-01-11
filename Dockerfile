@@ -72,6 +72,7 @@ RUN apk add --no-cache \
 # Copy the entrypoint script.
 #COPY "docker/lnd/start-lnd.sh" .
 #COPY "start-lnd.sh" .
+
 RUN ls -al /go/src/github.com/lightningnetwork/lnd/docker/lnd
 RUN chmod +x /go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh
 
