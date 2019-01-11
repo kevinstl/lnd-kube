@@ -15,7 +15,8 @@ then
 #    git pull origin
     git pull origin $branch
 
-    git push -u origin $branch
+#    git push -u origin $branch
+    git push origin $branch
 fi
 
 
