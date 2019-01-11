@@ -149,7 +149,7 @@ def release(branch) {
     if (branch?.trim()) {
       sh "git checkout $branch"
 //      sh "git stash save"
-      sh "git pull -r"
+//      sh "git pull -r"
 //      sh "git stash apply"
     }
 
