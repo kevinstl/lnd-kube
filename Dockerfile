@@ -30,8 +30,8 @@ ENV GODEBUG netdns=cgo
 #    echo '@testing https://dl-3.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories && \
 #    echo '@community https://dl-3.alpinelinux.org/alpine/v3.4/community'
 
-RUN export http_proxy=http://proxyhost:proxyport
-RUN export HTTP_PROXY_AUTH=basic:*:proxyuser:proxypass
+#RUN export http_proxy=http://proxyhost:proxyport
+#RUN export HTTP_PROXY_AUTH=basic:*:proxyuser:proxypass
 
 #RUN apk update \
 #&&  apk add --no-cache \
