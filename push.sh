@@ -22,6 +22,7 @@ then
 
 
 #    git push -u origin $branch
+    git push $branch
     git push origin $branch
 fi
 
