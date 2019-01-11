@@ -113,18 +113,18 @@ pipeline {
       }
     }
 
-    stage('Push Local') {
-      steps {
-        script {
-          if (kubeEnv?.trim() == 'local') {
-            container('go') {
-              sh "echo branch: ${env.BRANCH_NAME}"
-              sh "./push.sh ${env.BRANCH_NAME}"
-            }
-          }
-        }
-      }
-    }
+//    stage('Push Local') {
+//      steps {
+//        script {
+//          if (kubeEnv?.trim() == 'local') {
+//            container('go') {
+//              sh "echo branch: ${env.BRANCH_NAME}"
+//              sh "./push.sh ${env.BRANCH_NAME}"
+//            }
+//          }
+//        }
+//      }
+//    }
   }
 
   post {
