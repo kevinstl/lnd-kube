@@ -41,4 +41,13 @@ spec:
           timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
+
+        volumeMounts:
+        - mountPath: /shared
+          name: lightning-shared
+      volumes:
+          - name: lightning-shared
+            persistentVolumeClaim:
+              claimName: lightning-pvc
+
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
