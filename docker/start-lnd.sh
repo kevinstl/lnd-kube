@@ -60,4 +60,5 @@ exec lnd \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
+    --rpclisten=localhost:10009
     "$@"
