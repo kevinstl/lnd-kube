@@ -50,6 +50,7 @@ if [[ "$CHAIN" == "litecoin" ]]; then
 fi
 
 exec lnd \
+    --rpclisten=localhost:10009 \
     --noseedbackup \
     --logdir="/data" \
     "--$CHAIN.active" \
@@ -60,5 +61,4 @@ exec lnd \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
-    --rpclisten=localhost:10009 \
     "$@"
