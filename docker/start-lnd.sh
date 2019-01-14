@@ -61,5 +61,4 @@ exec lnd \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
     --rpclisten=localhost:10009 \
-    --no-macaroons \
     "$@"
