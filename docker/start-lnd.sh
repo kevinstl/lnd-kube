@@ -55,7 +55,7 @@ exec lnd \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
-    --rpclisten=0.0.0.0:10009 \
+    --rpclisten=localhost:10009 \
     "--$BACKEND.rpccert"="/shared/rpc/rpc.cert" \
     "--$BACKEND.rpchost"="lightning-kube-btcd" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
