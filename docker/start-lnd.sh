@@ -62,3 +62,5 @@ exec lnd \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
     "$@"
+
+
