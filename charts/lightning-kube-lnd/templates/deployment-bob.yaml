@@ -42,18 +42,20 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 12 }}
 
-
         volumeMounts:
-        - mountPath: /shared/rpc
-          name: lightning-shared
-          subPath: rpc
-        - mountPath: /shared/data-bob
-          name: lightning-shared
-          subPath: data-bob
+        - mountPath: /mnt/lk/shared/rpc
+          name: lightning-kube-drive
+          subPath: lk/shared/rpc
+        - mountPath: /mnt/lk/lnd/data
+          name: lightning-kube-drive
+          subPath: lk/lnd/data
+        - mountPath: /mnt/lk/lnd/log
+          name: lightning-kube-drive
+          subPath: lk/lnd/log
       volumes:
-          - name: lightning-shared
+          - name: lightning-kube-drive
             persistentVolumeClaim:
-              claimName: lightning-pvc
+              claimName: lightning-kube-pvc
 
 
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

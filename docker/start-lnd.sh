@@ -51,12 +51,12 @@ fi
 
 exec lnd \
     --noseedbackup \
-    --logdir="/data" \
+    --logdir="/mnt/lk/lnd/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
     --rpclisten=localhost:10009 \
-    "--$BACKEND.rpccert"="/shared/rpc/rpc.cert" \
+    "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
     "--$BACKEND.rpchost"="lightning-kube-btcd" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
