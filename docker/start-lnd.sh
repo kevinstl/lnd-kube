@@ -57,7 +57,6 @@ fi
 exec lnd \
     --noseedbackup \
     --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
-    --macaroonpath="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data/chain/bitcoin/simnet/admin.macaroon" \
     --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
@@ -70,4 +69,5 @@ exec lnd \
     --debuglevel="$DEBUG" \
     "$@"
 
+#    --macaroonpath="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data/chain/bitcoin/simnet/admin.macaroon" \
 
