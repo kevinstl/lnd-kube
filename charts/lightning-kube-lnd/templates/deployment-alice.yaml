@@ -22,6 +22,11 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+        env:
+          - name: DEPLOYMENT_NAME
+            value: "alice"
+
         ports:
         - containerPort: {{ .Values.service.internalPort }}
 #        livenessProbe:
@@ -46,9 +51,12 @@ spec:
         - mountPath: /mnt/lk/shared/rpc
           name: lightning-kube-drive
           subPath: lk/shared/rpc
-        - mountPath: /mnt/lk/lnd/data
+        - mountPath: /mnt/lk/lnd/alice/data
           name: lightning-kube-drive
-          subPath: lk/lnd/data
+          subPath: lk/lnd/alice/data
+        - mountPath: /mnt/lk/lnd/alice/log
+          name: lightning-kube-drive
+          subPath: lk/lnd/alice/log
       volumes:
           - name: lightning-kube-drive
             persistentVolumeClaim:

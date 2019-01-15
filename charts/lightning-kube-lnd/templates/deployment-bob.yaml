@@ -22,6 +22,11 @@ spec:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+        env:
+          - name: DEPLOYMENT_NAME
+            value: "bob"
+
         ports:
         - containerPort: {{ .Values.service.internalPort }}
 #        livenessProbe:
@@ -46,9 +51,12 @@ spec:
         - mountPath: /mnt/lk/shared/rpc
           name: lightning-kube-drive
           subPath: lk/shared/rpc
-        - mountPath: /mnt/lk/lnd/data
+        - mountPath: /mnt/lk/lnd/bob/data
           name: lightning-kube-drive
-          subPath: lk/lnd/data
+          subPath: lk/lnd/bob/data
+        - mountPath: /mnt/lk/lnd/bob/log
+          name: lightning-kube-drive
+          subPath: lk/lnd/bob/log
       volumes:
           - name: lightning-kube-drive
             persistentVolumeClaim:

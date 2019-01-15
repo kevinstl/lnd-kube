@@ -49,9 +49,14 @@ if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
 fi
 
+if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
+    DEPLOYMENT_NAME_DIR="/$DEPLOYMENT_NAME"
+fi
+
 exec lnd \
     --noseedbackup \
-    --logdir="/var/log" \
+    --logdir="/mnt/lk/lnd/$DEPLOYMENT_NAME_DIR/log" \
+    --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
