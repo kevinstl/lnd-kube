@@ -49,14 +49,15 @@ if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
 fi
 
+DEPLOYMENT_NAME_DIR=""
 if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
     DEPLOYMENT_NAME_DIR="/$DEPLOYMENT_NAME"
 fi
 
 exec lnd \
     --noseedbackup \
-    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
     --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
+    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
@@ -69,3 +70,4 @@ exec lnd \
     "$@"
 
 
+#    --macaroonpath="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data/bitcoi"
