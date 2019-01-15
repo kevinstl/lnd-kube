@@ -42,13 +42,18 @@ spec:
         resources:
 {{ toYaml .Values.resources | indent 12 }}
 
+
         volumeMounts:
         - mountPath: /shared/rpc
           name: lightning-shared
           subPath: rpc
+        - mountPath: /shared/data-bob
+          name: lightning-shared
+          subPath: data-bob
       volumes:
           - name: lightning-shared
             persistentVolumeClaim:
               claimName: lightning-pvc
+
 
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

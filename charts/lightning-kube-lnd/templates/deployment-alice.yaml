@@ -46,9 +46,13 @@ spec:
         - mountPath: /shared/rpc
           name: lightning-shared
           subPath: rpc
+        - mountPath: /shared/data-alice
+          name: lightning-shared
+          subPath: data-alice
       volumes:
           - name: lightning-shared
             persistentVolumeClaim:
               claimName: lightning-pvc
+
 
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
