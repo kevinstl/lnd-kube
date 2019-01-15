@@ -51,7 +51,7 @@ fi
 
 exec lnd \
     --noseedbackup \
-    --logdir="/mnt/lk/lnd/log" \
+    --logdir="/var/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \

@@ -49,9 +49,6 @@ spec:
         - mountPath: /mnt/lk/lnd/data
           name: lightning-kube-drive
           subPath: lk/lnd/data
-        - mountPath: /mnt/lk/lnd/log
-          name: lightning-kube-drive
-          subPath: lk/lnd/log
       volumes:
           - name: lightning-kube-drive
             persistentVolumeClaim:
