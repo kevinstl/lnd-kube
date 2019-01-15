@@ -55,7 +55,7 @@ fi
 
 exec lnd \
     --noseedbackup \
-    --logdir="/mnt/lk/lnd/$DEPLOYMENT_NAME_DIR/log" \
+    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
     --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
