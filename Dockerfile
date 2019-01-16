@@ -43,7 +43,7 @@ RUN apk add --no-cache \
 #COPY "start-lnd.sh" .
 
 
-COPY "docker/lnd.conf" /root/.lnd/
+#COPY "docker/lnd.conf" /root/.lnd/
 COPY "docker/start-lnd.sh" /go/src/github.com/lightningnetwork/lnd/docker/lnd/
 
 RUN ls -al /go/src/github.com/lightningnetwork/lnd/docker/lnd
