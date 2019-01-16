@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
 {{- if .Values.service.name }}
-  name: {{ .Values.service.name }}
+  name: {{ .Values.service.name }}-alice
 {{- else }}
   name: {{ template "fullname" . }}
 {{- end }}
@@ -24,4 +24,4 @@ spec:
     protocol: TCP
     name: rpc
   selector:
-    app: {{ template "fullname" . }}
+    app: {{ template "fullname" . }}-alice
