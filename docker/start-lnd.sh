@@ -56,8 +56,7 @@ fi
 
 exec lnd \
     --noseedbackup \
-    --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
-    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
+    --logdir="/data" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
@@ -68,6 +67,9 @@ exec lnd \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
     "$@"
+
+#    --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
+#    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
 
 #    --macaroonpath="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data/chain/bitcoin/simnet/admin.macaroon" \
 
