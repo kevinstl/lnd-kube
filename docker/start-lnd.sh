@@ -62,7 +62,7 @@ exec lnd \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
     "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
-    "--$BACKEND.rpchost"="bitcoin" \
+    "--$BACKEND.rpchost"="blockchain" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
