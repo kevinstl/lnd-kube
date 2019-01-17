@@ -61,8 +61,6 @@ exec lnd \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
-    --restlisten=="localhost:9735" \
-    --rpclisten="localhost:10009" \
     "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
     "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
@@ -70,7 +68,7 @@ exec lnd \
     --debuglevel="$DEBUG" \
     "$@"
 
-
+#--rpclisten=localhost:10009 \
 
 #    --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
 #    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
