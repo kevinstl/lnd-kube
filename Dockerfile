@@ -1,4 +1,4 @@
-FROM golang:1.11-alpine as builder
+FROM golang:1.11.4-alpine as builder
 
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
