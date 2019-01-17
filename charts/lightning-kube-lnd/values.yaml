@@ -9,8 +9,8 @@ image:
 service:
   name: lightning-kube-lnd
   type: ClusterIP
-  externalPort: 80
-  internalPort: 8080
+  externalPort: 10009
+  internalPort: 10009
   annotations:
     fabric8.io/expose: "true"
     fabric8.io/ingress.annotations: "kubernetes.io/ingress.class: nginx"
