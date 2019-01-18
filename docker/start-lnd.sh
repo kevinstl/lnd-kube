@@ -124,7 +124,8 @@ echo ${start_lnd_cmd}
 
 echo "debug1.1"
 
-`${start_lnd_cmd}` &
+#`${start_lnd_cmd}` &
+eval ${start_lnd_cmd} || true
 
 echo "debug2"
 
