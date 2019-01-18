@@ -65,7 +65,8 @@ exec lnd \
     "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
-    --rpclisten=127.0.0.1:10009 \
+    --rpclisten=0.0.0.0:10009 \
+    --tlsextraip=0.0.0.0 \
     --debuglevel="$DEBUG" \
     "$@"
 
