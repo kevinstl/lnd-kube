@@ -132,21 +132,21 @@ echo ${start_lnd_cmd}
 echo "debug1.1"
 
 #`${start_lnd_cmd}` &
-eval ${start_lnd_cmd} ${background} || true
+#eval ${start_lnd_cmd} ${background} || true
 
 echo "debug2"
 
-while [[ ! -f /root/.lnd/tls.cert || ! -f /root/.lnd/tls.cert ]]
-do
-    echo "waiting for tls files to be created..."
-    sleep 2
-done
-
-echo "debug3"
+#while [[ ! -f /root/.lnd/tls.cert || ! -f /root/.lnd/tls.cert ]]
+#do
+#    echo "waiting for tls files to be created..."
+#    sleep 2
+#done
+#
+#echo "debug3"
 
 #kill_lnd
 
-lncli --network=simnet --no-macaroons stop || true
+#lncli --network=simnet --no-macaroons stop || true
 
 #echo "debug4"
 #ls -al /root/.lnd
@@ -166,7 +166,7 @@ lncli --network=simnet --no-macaroons stop || true
 
 echo "debug6"
 
-#exec ${start_lnd_cmd}
+exec ${start_lnd_cmd}
 
 echo "debug7"
 
