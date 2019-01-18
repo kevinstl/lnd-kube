@@ -76,6 +76,8 @@ start_lnd_cmd=" \
         --noseedbackup \
         --datadir=\"/mnt/lk/shared/data\" \
         --logdir=\"/mnt/lk/shared/data\" \
+        --tlscertpath=/root/.lnd/tls.cert \
+        --tlskeypath=/root/.lnd/tls.key \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
