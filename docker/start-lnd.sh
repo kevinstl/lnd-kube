@@ -82,8 +82,7 @@ start_lnd_cmd=" \
         --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
         --$BACKEND.rpcpass=\"$RPCPASS\" \
-        --rpclisten=$hostIp:10009 \
-        --tlsextraip=$hostIp \
+        --rpclisten=0.0.0.0:10009 \
         --debuglevel=\"$DEBUG\" \
         $scriptArgs \
 "
@@ -108,6 +107,10 @@ start_lnd() {
         "$scriptArgs"
 
     echo "start_lnd debug2"
+
+
+#        --rpclisten=$hostIp:10009 \
+#        --tlsextraip=$hostIp \
 
 #    "$@"
 #
