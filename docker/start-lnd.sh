@@ -125,7 +125,7 @@ echo ${start_lnd_cmd}
 echo "debug1.1"
 
 #`${start_lnd_cmd}` &
-eval ${start_lnd_cmd} || true
+eval ${start_lnd_cmd} ${background} || true
 
 echo "debug2"
 
