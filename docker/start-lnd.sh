@@ -61,12 +61,32 @@ kill_lnd() {
     pkill lnd
 }
 
+hostIp=`hostname -i`
+#hostIp="test"
+
+start_lnd_cmd=" \
+        lnd \
+        --noseedbackup \
+        --logdir=\"/data\" \
+        --$CHAIN.active \
+        --$CHAIN.$NETWORK \
+        --$CHAIN.node=\"btcd\" \
+        --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
+        --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
+        --$BACKEND.rpcuser=\"$RPCUSER\" \
+        --$BACKEND.rpcpass=\"$RPCPASS\" \
+        --rpclisten=$hostIp:10009 \
+        --tlsextraip=$hostIp \
+        --debuglevel=\"$DEBUG\" \
+        $scriptArgs \
+    "
+
 
 start_lnd() {
 
     echo "start_lnd debug1"
 
-    lnd \
+    exec lnd
         --noseedbackup \
         --logdir="/data" \
         "--$CHAIN.active" \
@@ -95,7 +115,7 @@ start_lnd() {
 
 echo "debug1"
 
-start_lnd &
+exec `echo ${start_lnd_cmd}` &
 
 echo "debug2"
 
@@ -108,7 +128,7 @@ rm /root/.lnd/tls.key
 
 echo "debug4"
 
-exec start_lnd
+exec `echo ${start_lnd_cmd}`
 
 echo "debug5"
 
