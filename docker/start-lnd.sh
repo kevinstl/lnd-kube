@@ -119,6 +119,8 @@ start_lnd() {
 #    kill_lnd
 #}
 
+lnd --version
+
 echo "debug1"
 
 echo ${start_lnd_cmd}
