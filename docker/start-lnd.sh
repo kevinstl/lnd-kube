@@ -142,24 +142,28 @@ echo "debug3"
 
 kill_lnd
 
+
 echo "debug4"
-
 ls -al /root/.lnd
-
 echo "debug4.1"
-
-#rm /root/.lnd/tls.cert
-#rm /root/.lnd/tls.key
-
+rm /root/.lnd/tls.cert
+rm /root/.lnd/tls.key
 echo "debug4.2"
-
 ls -al /root/.lnd
 
 echo "debug5"
+ls -al /data
+echo "debug5.1"
+rm -rf /data/*
+echo "debug5.2"
+ls -al /data
+
+
+echo "debug6"
 
 exec ${start_lnd_cmd}
 
-echo "debug6"
+echo "debug7"
 
 
 
