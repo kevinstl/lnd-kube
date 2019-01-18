@@ -130,6 +130,12 @@ kill_lnd
 
 echo "debug3"
 
+while [[ ! -f /root/.lnd/tls.cert || ! -f /root/.lnd/tls.cert ]]
+do
+    echo "waiting for tls files to be created..."
+    sleep 2
+done
+
 rm /root/.lnd/tls.cert
 rm /root/.lnd/tls.key
 
