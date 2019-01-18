@@ -63,6 +63,9 @@ kill_lnd() {
 
 
 start_lnd() {
+
+    echo "start_lnd debug1"
+
     exec lnd \
         --noseedbackup \
         --logdir="/data" \
@@ -78,23 +81,31 @@ start_lnd() {
         --debuglevel="$DEBUG" \
         "$scriptArgs"
 
-    "$@"
+    echo "start_lnd debug2"
+
+#    "$@"
+#
+#    echo "start_lnd debug3"
 }
 
 echo "debug1"
 
-start_lnd kill_lnd
+start_lnd &
 
 echo "debug2"
+
+kill_lnd
+
+echo "debug3"
 
 rm /root/.lnd/tls.cert
 rm /root/.lnd/tls.key
 
-echo "debug3"
+echo "debug4"
 
 start_lnd
 
-echo "debug4"
+echo "debug5"
 
 
 
