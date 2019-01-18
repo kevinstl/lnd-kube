@@ -88,13 +88,18 @@ start_lnd() {
 #    echo "start_lnd debug3"
 }
 
+start_lnd_bg_kill() {
+    start_lnd &
+    kill_lnd
+}
+
 echo "debug1"
 
-start_lnd &
+start_lnd_bg_kill
 
 echo "debug2"
 
-kill_lnd
+#kill_lnd
 
 echo "debug3"
 
