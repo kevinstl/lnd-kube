@@ -3,6 +3,8 @@
 # exit from script if error was raised.
 set -e
 
+scriptArgs = "$@"
+
 # error function is used within a bash function in order to send the error
 # message directly to the stderr output and exit.
 error() {
@@ -55,6 +57,11 @@ if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
     DEPLOYMENT_NAME_DIR="/$DEPLOYMENT_NAME"
 fi
 
+kill_lnd() {
+    pkill lnd
+}
+
+
 start_lnd() {
     exec lnd \
         --noseedbackup \
@@ -69,15 +76,17 @@ start_lnd() {
         --rpclisten=`hostname -i`:10009 \
         --tlsextraip=`hostname -i` \
         --debuglevel="$DEBUG" \
-        "$@"
+        "$scriptArgs"
+
+    "$@"
 }
 
-start_lnd
+echo "debug1"
+
+start_lnd kill_lnd
 
 rm /root/.lnd/tls.cert
 rm /root/.lnd/tls.key
-
-pkill lnd
 
 start_lnd
 
