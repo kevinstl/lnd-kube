@@ -66,7 +66,7 @@ start_lnd() {
 
     echo "start_lnd debug1"
 
-    exec lnd \
+    lnd \
         --noseedbackup \
         --logdir="/data" \
         "--$CHAIN.active" \
@@ -88,18 +88,18 @@ start_lnd() {
 #    echo "start_lnd debug3"
 }
 
-start_lnd_bg_kill() {
-    start_lnd &
-    kill_lnd
-}
+#start_lnd_bg_kill() {
+#    start_lnd &
+#    kill_lnd
+#}
 
 echo "debug1"
 
-start_lnd_bg_kill
+start_lnd &
 
 echo "debug2"
 
-#kill_lnd
+kill_lnd
 
 echo "debug3"
 
@@ -108,7 +108,7 @@ rm /root/.lnd/tls.key
 
 echo "debug4"
 
-start_lnd
+exec start_lnd
 
 echo "debug5"
 
