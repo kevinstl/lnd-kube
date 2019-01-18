@@ -58,14 +58,20 @@ if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
 fi
 
 kill_lnd() {
-    pkill lnd
+    pkill lnd || true
 }
 
 hostIp=`hostname -i`
 #hostIp="test"
 
+start_lnd_cmd_test=" \
+        sleep 1 \
+    "
+
+background="&"
+
 start_lnd_cmd=" \
-        lnd \
+lnd \
         --noseedbackup \
         --logdir=\"/data\" \
         --$CHAIN.active \
@@ -79,8 +85,7 @@ start_lnd_cmd=" \
         --tlsextraip=$hostIp \
         --debuglevel=\"$DEBUG\" \
         $scriptArgs \
-    "
-
+"
 
 start_lnd() {
 
@@ -115,7 +120,9 @@ start_lnd() {
 
 echo "debug1"
 
-`echo ${start_lnd_cmd}` &
+`${start_lnd_cmd}` &
+
+#`${start_lnd_cmd}`
 
 echo "debug2"
 
@@ -128,7 +135,7 @@ rm /root/.lnd/tls.key
 
 echo "debug4"
 
-exec `echo ${start_lnd_cmd}`
+exec ${start_lnd_cmd}
 
 echo "debug5"
 
