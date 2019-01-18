@@ -71,8 +71,10 @@ start_lnd_cmd_test=" \
 background="&"
 
 start_lnd_cmd=" \
-lnd \
+    lnd \
+        --no-macaroons \
         --noseedbackup \
+
         --logdir=\"/data\" \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
