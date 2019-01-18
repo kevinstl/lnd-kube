@@ -61,14 +61,16 @@ exec lnd \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
-    "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
-    "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --rpclisten=0.0.0.0:10009 \
     --tlsextraip=0.0.0.0 \
     --debuglevel="$DEBUG" \
     "$@"
+
+#    "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
+#    "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
+
 
 #--rpclisten=localhost:10009 \
 
