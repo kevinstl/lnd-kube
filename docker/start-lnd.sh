@@ -74,13 +74,11 @@ start_lnd_cmd=" \
     lnd \
         --no-macaroons \
         --noseedbackup \
-        --datadir=\"/mnt/lk/shared/data\" \
         --logdir=\"/mnt/lk/shared/data\" \
-        --tlscertpath=/root/.lnd/tls.cert \
-        --tlskeypath=/root/.lnd/tls.key \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
+        --$BACKEND.dir=\"/mnt/lk/shared/data\" \
         --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
         --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
@@ -89,6 +87,13 @@ start_lnd_cmd=" \
         --debuglevel=\"$DEBUG\" \
         $scriptArgs \
 "
+
+
+#        --datadir=\"/mnt/lk/shared/data\" \
+#        --logdir=\"/mnt/lk/shared/data\" \
+#        --tlscertpath=/root/.lnd/tls.cert \
+#        --tlskeypath=/root/.lnd/tls.key \
+
 
 start_lnd() {
 
