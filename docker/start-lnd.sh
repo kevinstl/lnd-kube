@@ -142,7 +142,7 @@ echo "debug3"
 
 #kill_lnd
 
-lncli --network=simnet stop
+lncli --network=simnet --no-macaroons stop || true
 
 echo "debug4"
 ls -al /root/.lnd
