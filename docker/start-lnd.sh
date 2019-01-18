@@ -74,7 +74,8 @@ start_lnd_cmd=" \
     lnd \
         --no-macaroons \
         --noseedbackup \
-        --logdir=\"/data\" \
+        --datadir=\"/mnt/lk/shared/data\" \
+        --logdir=\"/mnt/lk/shared/data\" \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \

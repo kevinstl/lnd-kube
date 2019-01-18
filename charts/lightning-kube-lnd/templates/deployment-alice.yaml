@@ -52,6 +52,9 @@ spec:
         - mountPath: /mnt/lk/shared/rpc
           name: lightning-kube-drive
           subPath: lk/shared/rpc
+        - mountPath: /mnt/lk/shared/data
+          name: lightning-kube-drive
+          subPath: lk/shared/data
         - mountPath: /mnt/lk/lnd/alice/data
           name: lightning-kube-drive
           subPath: lk/lnd/alice/data
