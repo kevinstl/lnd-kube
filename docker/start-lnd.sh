@@ -74,7 +74,6 @@ start_lnd_cmd=" \
     lnd \
         --no-macaroons \
         --noseedbackup \
-
         --logdir=\"/data\" \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
