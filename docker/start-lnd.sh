@@ -115,7 +115,7 @@ start_lnd() {
 
 echo "debug1"
 
-exec `echo ${start_lnd_cmd}` &
+`echo ${start_lnd_cmd}` &
 
 echo "debug2"
 
