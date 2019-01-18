@@ -162,9 +162,12 @@ ls -al /data
 
 echo "debug6"
 
-exec ${start_lnd_cmd}
+#exec ${start_lnd_cmd}
 
 echo "debug7"
+
+
+sleep 10000
 
 
 
