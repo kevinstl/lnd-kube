@@ -120,6 +120,10 @@ start_lnd() {
 
 echo "debug1"
 
+echo ${start_lnd_cmd}
+
+echo "debug1.1"
+
 `${start_lnd_cmd}` &
 
 echo "debug2"
