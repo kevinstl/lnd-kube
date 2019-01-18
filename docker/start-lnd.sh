@@ -140,8 +140,16 @@ kill_lnd
 
 echo "debug4"
 
+ls -al /root/.lnd
+
+echo "debug4.1"
+
 rm /root/.lnd/tls.cert
 rm /root/.lnd/tls.key
+
+echo "debug4.2"
+
+ls -al /root/.lnd
 
 echo "debug5"
 
