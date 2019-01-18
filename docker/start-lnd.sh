@@ -85,11 +85,16 @@ echo "debug1"
 
 start_lnd kill_lnd
 
+echo "debug2"
+
 rm /root/.lnd/tls.cert
 rm /root/.lnd/tls.key
 
+echo "debug3"
+
 start_lnd
 
+echo "debug4"
 
 
 
@@ -100,4 +105,3 @@ start_lnd
 #    --logdir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/log" \
 
 #    --macaroonpath="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data/chain/bitcoin/simnet/admin.macaroon" \
-
