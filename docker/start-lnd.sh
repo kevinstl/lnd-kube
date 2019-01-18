@@ -140,8 +140,9 @@ done
 
 echo "debug3"
 
-kill_lnd
+#kill_lnd
 
+lncli --network=simnet stop
 
 echo "debug4"
 ls -al /root/.lnd
