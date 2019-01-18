@@ -147,20 +147,20 @@ echo "debug3"
 
 lncli --network=simnet --no-macaroons stop || true
 
-echo "debug4"
-ls -al /root/.lnd
-echo "debug4.1"
-rm /root/.lnd/tls.cert
-rm /root/.lnd/tls.key
-echo "debug4.2"
-ls -al /root/.lnd
-
-echo "debug5"
-ls -al /data
-echo "debug5.1"
-rm -rf /data/*
-echo "debug5.2"
-ls -al /data
+#echo "debug4"
+#ls -al /root/.lnd
+#echo "debug4.1"
+#rm /root/.lnd/tls.cert
+#rm /root/.lnd/tls.key
+#echo "debug4.2"
+#ls -al /root/.lnd
+#
+#echo "debug5"
+#ls -al /data
+#echo "debug5.1"
+#rm -rf /data/*
+#echo "debug5.2"
+#ls -al /data
 
 
 echo "debug6"
