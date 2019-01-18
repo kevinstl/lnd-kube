@@ -65,11 +65,11 @@ exec lnd \
     "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
-    --rpclisten=0.0.0.0:10009 \
-    --tlsextraip=0.0.0.0 \
+    --rpclisten=`hostname -i`:10009 \
     --debuglevel="$DEBUG" \
     "$@"
 
+#    --tlsextraip=0.0.0.0 \
 #--rpclisten=localhost:10009 \
 
 #    --datadir="/mnt/lk/lnd$DEPLOYMENT_NAME_DIR/data" \
