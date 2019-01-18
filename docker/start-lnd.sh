@@ -122,13 +122,7 @@ echo "debug1"
 
 `${start_lnd_cmd}` &
 
-#`${start_lnd_cmd}`
-
 echo "debug2"
-
-kill_lnd
-
-echo "debug3"
 
 while [[ ! -f /root/.lnd/tls.cert || ! -f /root/.lnd/tls.cert ]]
 do
@@ -136,14 +130,20 @@ do
     sleep 2
 done
 
-rm /root/.lnd/tls.cert
-rm /root/.lnd/tls.key
+echo "debug3"
+
+kill_lnd
 
 echo "debug4"
 
-exec ${start_lnd_cmd}
+rm /root/.lnd/tls.cert
+rm /root/.lnd/tls.key
 
 echo "debug5"
+
+exec ${start_lnd_cmd}
+
+echo "debug6"
 
 
 
