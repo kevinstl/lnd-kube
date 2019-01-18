@@ -55,20 +55,33 @@ if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
     DEPLOYMENT_NAME_DIR="/$DEPLOYMENT_NAME"
 fi
 
-exec lnd \
-    --noseedbackup \
-    --logdir="/data" \
-    "--$CHAIN.active" \
-    "--$CHAIN.$NETWORK" \
-    "--$CHAIN.node"="btcd" \
-    "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
-    "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
-    "--$BACKEND.rpcuser"="$RPCUSER" \
-    "--$BACKEND.rpcpass"="$RPCPASS" \
-    --rpclisten=`hostname -i`:10009 \
-    --tlsextraip=`hostname -i` \
-    --debuglevel="$DEBUG" \
-    "$@"
+start_lnd() {
+    exec lnd \
+        --noseedbackup \
+        --logdir="/data" \
+        "--$CHAIN.active" \
+        "--$CHAIN.$NETWORK" \
+        "--$CHAIN.node"="btcd" \
+        "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
+        "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
+        "--$BACKEND.rpcuser"="$RPCUSER" \
+        "--$BACKEND.rpcpass"="$RPCPASS" \
+        --rpclisten=`hostname -i`:10009 \
+        --tlsextraip=`hostname -i` \
+        --debuglevel="$DEBUG" \
+        "$@"
+}
+
+start_lnd
+
+rm /root/.lnd/tls.cert
+rm /root/.lnd/tls.key
+
+pkill lnd
+
+start_lnd
+
+
 
 
 #    --tlsextraip=0.0.0.0 \
