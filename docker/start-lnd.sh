@@ -76,6 +76,7 @@ start_lnd_cmd=" \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
+        --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
         --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
         --$BACKEND.rpcpass=\"$RPCPASS\" \
@@ -86,7 +87,6 @@ start_lnd_cmd=" \
 
 #        --logdir=\"/mnt/lk/shared/data\" \
 #        --$BACKEND.dir=\"/mnt/lk/shared/data\" \
-#        --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
 #--no-macaroons \
 #        --datadir=\"/mnt/lk/shared/data\" \
 #        --logdir=\"/mnt/lk/shared/data\" \
@@ -170,14 +170,15 @@ echo "debug2"
 #ls -al /data
 
 
+
 echo "debug6"
 
 exec ${start_lnd_cmd}
 
 echo "debug7"
 
-
-sleep 10000
+cp /mnt/lk/shared/rpc/rpc.cert /root/.lnd/tls.cert
+#sleep 10000
 
 
 
