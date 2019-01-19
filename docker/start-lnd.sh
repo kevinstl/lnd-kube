@@ -72,7 +72,6 @@ background="&"
 
 start_lnd_cmd=" \
     lnd \
-        --no-macaroons \
         --noseedbackup \
         --logdir=\"/mnt/lk/shared/data\" \
         --$CHAIN.active \
@@ -88,7 +87,7 @@ start_lnd_cmd=" \
         $scriptArgs \
 "
 
-
+#--no-macaroons \
 #        --datadir=\"/mnt/lk/shared/data\" \
 #        --logdir=\"/mnt/lk/shared/data\" \
 #        --tlscertpath=/root/.lnd/tls.cert \
