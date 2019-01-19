@@ -73,7 +73,6 @@ background="&"
 start_lnd_cmd=" \
     lnd \
         --noseedbackup \
-        --logdir=\"/mnt/lk/shared/data\" \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
@@ -85,6 +84,7 @@ start_lnd_cmd=" \
         $scriptArgs \
 "
 
+#        --logdir=\"/mnt/lk/shared/data\" \
 #        --$BACKEND.dir=\"/mnt/lk/shared/data\" \
 #        --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
 #--no-macaroons \
