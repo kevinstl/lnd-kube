@@ -73,6 +73,7 @@ background="&"
 start_lnd_cmd=" \
     lnd \
         --noseedbackup \
+        --externalip=$hostIp \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
@@ -177,7 +178,7 @@ exec ${start_lnd_cmd}
 
 echo "debug7"
 
-cp /mnt/lk/shared/rpc/rpc.cert /root/.lnd/tls.cert
+#cp /mnt/lk/shared/rpc/rpc.cert /root/.lnd/tls.cert
 #sleep 10000
 
 
