@@ -77,16 +77,16 @@ start_lnd_cmd=" \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
-        --$BACKEND.dir=\"/mnt/lk/shared/data\" \
-        --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
         --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
         --$BACKEND.rpcpass=\"$RPCPASS\" \
-        --rpclisten=127.0.0.1 \
+        --rpclisten=0.0.0.0 \
         --debuglevel=\"$DEBUG\" \
         $scriptArgs \
 "
 
+#        --$BACKEND.dir=\"/mnt/lk/shared/data\" \
+#        --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
 #--no-macaroons \
 #        --datadir=\"/mnt/lk/shared/data\" \
 #        --logdir=\"/mnt/lk/shared/data\" \
