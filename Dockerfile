@@ -3,7 +3,7 @@ FROM golang:1.10-alpine as builder
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
 # Copy in the local repository to build from.
-COPY . /go/src/github.com/lightningnetwork/lnd
+#COPY . /go/src/github.com/lightningnetwork/lnd
 
 # Force Go to use the cgo based DNS resolver. This is required to ensure DNS
 # queries required to connect to linked containers succeed.
