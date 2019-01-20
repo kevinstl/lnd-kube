@@ -62,6 +62,7 @@ kill_lnd() {
 }
 
 hostIp=`hostname -i`
+btcdHostIp=$(set_default `cat /mnt/lk/shared/btcd-host-ip` "lightning-kube-btcd.lightning-kube")
 #hostIp="test"
 
 start_lnd_cmd_test=" \
@@ -77,7 +78,7 @@ start_lnd_cmd=" \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
         --$BACKEND.rpccert=\"/mnt/lk/shared/rpc/rpc.cert\" \
-        --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
+        --$BACKEND.rpchost=\"$btcdHostIp\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
         --$BACKEND.rpcpass=\"$RPCPASS\" \
         --debuglevel=\"$DEBUG\" \
