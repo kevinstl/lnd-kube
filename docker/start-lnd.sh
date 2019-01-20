@@ -62,7 +62,7 @@ kill_lnd() {
 }
 
 hostIp=`hostname -i`
-btcdHostIp=`cat /mnt/lk/shared/btcd-host-ip`
+btcdHostIp=`cat /mnt/lk/shared/rpc/btcd-host-ip`
 echo "btcdHostIp: ${btcdHostIp}"
 #hostIp="test"
 
