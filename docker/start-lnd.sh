@@ -62,7 +62,8 @@ kill_lnd() {
 }
 
 hostIp=`hostname -i`
-btcdHostIp=$(set_default `cat /mnt/lk/shared/btcd-host-ip` "lightning-kube-btcd.lightning-kube")
+btcdHostIp=`cat /mnt/lk/shared/btcd-host-ip`
+echo "btcdHostIp: ${btcdHostIp}"
 #hostIp="test"
 
 start_lnd_cmd_test=" \
