@@ -52,9 +52,15 @@ fi
 btcdHostIp=`cat /mnt/lk/shared/rpc/btcd-host-ip`
 echo "btcdHostIp: ${btcdHostIp}"
 
+deploymentNameDir=""
+if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
+    deploymentNameDir="/$DEPLOYMENT_NAME"
+fi
+
 exec lnd \
     --noseedbackup \
-    --logdir="/data" \
+    --datadir="/mnt/lk/lnd${deploymentNameDir}/data" \
+    --logdir="/mnt/lk/lnd${deploymentNameDir}/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
