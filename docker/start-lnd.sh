@@ -81,6 +81,7 @@ start_lnd_cmd=" \
         --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
         --$BACKEND.rpcpass=\"$RPCPASS\" \
+        --tlsextraip=0.0.0.0 \
         --restlisten=0.0.0.0:9735 \
         --rpclisten=0.0.0.0:10009 \
         --debuglevel=\"$DEBUG\" \
