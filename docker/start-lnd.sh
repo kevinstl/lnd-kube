@@ -73,7 +73,6 @@ background="&"
 start_lnd_cmd=" \
     lnd \
         --noseedbackup \
-        --externalip=$hostIp \
         --$CHAIN.active \
         --$CHAIN.$NETWORK \
         --$CHAIN.node=\"btcd\" \
@@ -81,14 +80,15 @@ start_lnd_cmd=" \
         --$BACKEND.rpchost=\"lightning-kube-btcd.lightning-kube\" \
         --$BACKEND.rpcuser=\"$RPCUSER\" \
         --$BACKEND.rpcpass=\"$RPCPASS\" \
-        --tlsextraip=* \
-        --tlsextradomain=* \
-        --restlisten=0.0.0.0:9735 \
-        --rpclisten=0.0.0.0:10009 \
         --debuglevel=\"$DEBUG\" \
         $scriptArgs \
 "
 
+#        --tlsextraip=* \
+#        --tlsextradomain=* \
+#        --restlisten=0.0.0.0:9735 \
+#        --rpclisten=0.0.0.0:10009 \
+#        --externalip=$hostIp \
 #        --logdir=\"/mnt/lk/shared/data\" \
 #        --$BACKEND.dir=\"/mnt/lk/shared/data\" \
 #--no-macaroons \
