@@ -49,9 +49,6 @@ if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
 fi
 
-btcdHostIp=`cat /mnt/lk/shared/rpc/btcd-host-ip`
-echo "btcdHostIp: ${btcdHostIp}"
-
 deploymentNameDir=""
 if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
     deploymentNameDir="/$DEPLOYMENT_NAME"
@@ -65,7 +62,7 @@ exec lnd \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
     "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
-    "--$BACKEND.rpchost"="$btcdHostIp" \
+    "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
