@@ -6,6 +6,7 @@ imageTag=$3
 database=$4
 serviceType=$5
 nodePort=$6
+network=$7
 
 echo "context: ${context}"
 echo "namespace: ${namespace}"
@@ -13,6 +14,7 @@ echo "imageTag: ${imageTag}"
 echo "database: ${database}"
 echo "serviceType: ${serviceType}"
 echo "nodePort: ${nodePort}"
+echo "network: ${network}"
 
 
 kubeContextArg=""
@@ -21,10 +23,34 @@ then
     kubeContextArg="--kube-context ${context}"
 fi
 
+networkArg=""
+if [[ ${network} != "" ]]
+then
+    networkArg="--set project.network=${network}"
+fi
+
+networkSuffix=""
+if [[ ${network} != "" ]]
+then
+    networkSuffix="-${network}"
+fi
+
+networkSuffixArg=""
+if [[ ${network} != "" ]]
+then
+    networkSuffixArg="--set project.networkSuffix=${networkSuffix}"
+fi
+
 namespaceArg=""
 if [[ ${namespace} != "" ]]
 then
-    namespaceArg="--namespace ${namespace}"
+    namespaceArg="--namespace ${namespace}${networkSuffix}"
+fi
+
+namespaceValueArg=""
+if [[ ${namespace} != "" ]]
+then
+    namespaceValueArg="--set project.namespace=${namespace}${networkSuffix}"
 fi
 
 serviceTypeArg=""
@@ -40,8 +66,9 @@ then
 fi
 
 
-helm ${kubeContextArg} ${namespaceArg} install -n lightning-kube-lnd --set database=${database} ${serviceTypeArg} ${nodePortArg} --set image.tag=${imageTag} charts/lightning-kube-lnd
+#helm ${kubeContextArg} ${namespaceArg} install -n lightning-kube-lnd --set database=${database} ${serviceTypeArg} ${nodePortArg} --set image.tag=${imageTag} charts/lightning-kube-lnd
 
+helm ${kubeContextArg} ${namespaceArg} install -n lightning-kube-lnd${networkSuffix} --set database=${database} ${namespaceValueArg} ${serviceTypeArg} ${nodePortArg} ${networkArg} ${networkSuffixArg} --set image.tag=${imageTag} charts/lightning-kube-lnd
 
 if [ $? -eq 0 ]
 then
