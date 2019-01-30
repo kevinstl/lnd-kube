@@ -58,6 +58,8 @@ baseDir="/mnt/lk/${NETWORK}"
 baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
+mkdir -p ${baseRpcDir}
+
 exec lnd \
     --noseedbackup \
     --datadir="${baseLndDir}${deploymentNameDir}/data" \
