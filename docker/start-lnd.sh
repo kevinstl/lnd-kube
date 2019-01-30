@@ -54,14 +54,18 @@ if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
     deploymentNameDir="/$DEPLOYMENT_NAME"
 fi
 
+baseDir="/mnt/lk/${NETWORK}"
+baseLndDir=${baseDir}/lnd
+baseRpcDir=${baseDir}/shared/rpc
+
 exec lnd \
     --noseedbackup \
-    --datadir="/mnt/lk/lnd${deploymentNameDir}/data" \
-    --logdir="/mnt/lk/lnd${deploymentNameDir}/log" \
+    --datadir="${baseLndDir}${deploymentNameDir}/data" \
+    --logdir="${baseLndDir}${deploymentNameDir}/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
-    "--$BACKEND.rpccert"="/mnt/lk/shared/rpc/rpc.cert" \
+    "--$BACKEND.rpccert"="${baseRpcDir}/rpc.cert" \
     "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube-$NETWORK" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
@@ -69,5 +73,3 @@ exec lnd \
     "$@"
 
 
-#    "--$BACKEND.rpccert"="/shared/rpc/rpc.cert" \
-#    "--$BACKEND.rpchost"="blockchain" \

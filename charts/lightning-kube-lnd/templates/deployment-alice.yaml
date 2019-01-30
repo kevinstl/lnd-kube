@@ -53,15 +53,15 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
 
         volumeMounts:
-        - mountPath: /mnt/lk/shared/rpc
+        - mountPath: /mnt/lk/{{ .Values.project.network }}/shared/rpc
           name: lightning-kube-drive
-          subPath: lk/shared/rpc
-        - mountPath: /mnt/lk/lnd/alice/data
+          subPath: lk/{{ .Values.project.network }}/shared/rpc
+        - mountPath: /mnt/lk/{{ .Values.project.network }}/lnd/alice/data
           name: lightning-kube-drive
-          subPath: lk/lnd/alice/data
-        - mountPath: /mnt/lk/lnd/alice/log
+          subPath: lk/{{ .Values.project.network }}/lnd/alice/data
+        - mountPath: /mnt/lk/{{ .Values.project.network }}/lnd/alice/log
           name: lightning-kube-drive
-          subPath: lk/lnd/alice/log
+          subPath: lk/{{ .Values.project.network }}/lnd/alice/log
       volumes:
           - name: lightning-kube-drive
             persistentVolumeClaim:
