@@ -62,10 +62,17 @@ spec:
         - mountPath: /mnt/lk/{{ .Values.project.network }}/lnd/bob/log
           name: lightning-kube-drive
           subPath: lk/{{ .Values.project.network }}/lnd/bob/log
+
       volumes:
-          - name: lightning-kube-drive
-            persistentVolumeClaim:
-              claimName: lightning-kube-pvc{{ .Values.project.networkSuffix }}
+      - name: lightning-kube-drive
+        hostPath:
+          path: /network-drive/btcd
+          type: DirectoryOrCreate
+
+#      volumes:
+#          - name: lightning-kube-drive
+#            persistentVolumeClaim:
+#              claimName: lightning-kube-pvc{{ .Values.project.networkSuffix }}
 
 
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
