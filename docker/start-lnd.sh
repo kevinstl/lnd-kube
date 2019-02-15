@@ -39,8 +39,8 @@ set_default() {
 }
 
 # Set default variables if needed.
-RPCUSER=$(set_default "$RPCUSER" "devuser")
-RPCPASS=$(set_default "$RPCPASS" "devpass")
+RPCUSER=$(set_default "$RPCUSER" "devuser_change")
+RPCPASS=$(set_default "$RPCPASS" "devpass_change")
 DEBUG=$(set_default "$DEBUG" "debug")
 NETWORK=$(set_default "$NETWORK" "simnet")
 CHAIN=$(set_default "$CHAIN" "bitcoin")
