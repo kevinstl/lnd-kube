@@ -54,7 +54,7 @@ if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
     deploymentNameDir="/$DEPLOYMENT_NAME"
 fi
 
-baseDir="/mnt/lk/${NETWORK}"
+baseDir="/mnt/${NETWORK}"
 baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
