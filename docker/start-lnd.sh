@@ -38,6 +38,9 @@ set_default() {
    return "$VARIABLE"
 }
 
+echo "debug0"
+echo "NETWORK: ${NETWORK}"
+
 # Set default variables if needed.
 RPCUSER=$(set_default "$RPCUSER" "devuser")
 RPCPASS=$(set_default "$RPCPASS" "devpass")
@@ -49,10 +52,19 @@ if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
 fi
 
+echo "debug1"
+echo "DEPLOYMENT_NAME: ${DEPLOYMENT_NAME}"
+echo "NETWORK: ${NETWORK}"
+
 deploymentNameDir=""
 if [[ ! -z "$DEPLOYMENT_NAME" ]]; then
+    echo "debug2"
     deploymentNameDir="/$DEPLOYMENT_NAME"
 fi
+
+echo "debug3"
+echo "deploymentNameDir: ${deploymentNameDir}"
+
 
 baseDir="/mnt/lk/${NETWORK}"
 baseLndDir=${baseDir}/lnd

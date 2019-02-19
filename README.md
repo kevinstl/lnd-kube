@@ -1,10 +1,10 @@
-# Lightning Kube LND
+# LND Kube
 
-Lightning Kube LND provides a simple way to deploy Lightning Node Daemon (LND) into Kubernetes.           
+LND Kube provides a simple way to deploy Lightning Node Daemon (LND) into Kubernetes.           
 
 [<img src="https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.png" width="100px">](https://kubernetes.io/docs/home "Kubernetes")  [<img src="https://raw.githubusercontent.com/lightningnetwork/lnd/master/logo.png" width="100px">](https://github.com/lightningnetwork/lnd "LND")  [<img src="https://jenkins.io/images/logos/jenkins-x/jenkins-x-256.png" width="100px">](https://jenkins-x.io "Jenkins X")
 
-This project is confirmed to work for simnet on a minikube instance. **It has not been tested or hardened for security on testnet or mainnet.**
+This project is confirmed to work for simnet and testnet on a minikube instance. **It has not been tested or hardened for security on mainnet.**
 
 This project implements a Lightning Node running in Kubernetes using Lightning Network Daemon (LND) deployed by Jenkins X. 
 
