@@ -26,8 +26,6 @@ spec:
         env:
           - name: DEPLOYMENT_NAME
             value: "alice"
-
-        env:
           - name: NETWORK
             value: {{ .Values.project.network }}
 

@@ -27,7 +27,6 @@ spec:
           - name: DEPLOYMENT_NAME
             value: "bob"
 
-        env:
           - name: NETWORK
             value: {{ .Values.project.network }}
 
