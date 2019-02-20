@@ -66,7 +66,7 @@ echo "debug3"
 echo "deploymentNameDir: ${deploymentNameDir}"
 
 
-baseDir="/mnt/lk/${NETWORK}"
+baseDir="/mnt/${NETWORK}"
 baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
