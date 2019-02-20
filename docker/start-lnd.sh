@@ -38,12 +38,9 @@ set_default() {
    return "$VARIABLE"
 }
 
-echo "debug0"
-echo "NETWORK: ${NETWORK}"
-
 # Set default variables if needed.
-RPCUSER=$(set_default "$RPCUSER" "devuser")
-RPCPASS=$(set_default "$RPCPASS" "devpass")
+RPCUSER=$(set_default "$RPCUSER" "devuser_change")
+RPCPASS=$(set_default "$RPCPASS" "devpass_change")
 DEBUG=$(set_default "$DEBUG" "debug")
 NETWORK=$(set_default "$NETWORK" "simnet")
 CHAIN=$(set_default "$CHAIN" "bitcoin")
@@ -66,6 +63,7 @@ echo "debug3"
 echo "deploymentNameDir: ${deploymentNameDir}"
 
 
+baseDir="/mnt/${NETWORK}"
 baseDir="/mnt/${NETWORK}"
 baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
