@@ -1,5 +1,5 @@
 apiVersion: v1
 description: A Helm chart for Kubernetes
 icon: https://raw.githubusercontent.com/jenkins-x/jenkins-x-platform/d273e09/images/go.png
-name: lightning-kube-lnd
+name: lnd-kube
 version: 0.0.61
