@@ -35,5 +35,5 @@ terminationGracePeriodSeconds: 10
 
 project:    #TODO: Should clean this up. Remove redundancy of network & networkSuffix
   namespace: lightning-kube-simnet
-  network: simnet1
+  network: simnet
   networkSuffix: -simnet
