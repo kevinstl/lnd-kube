@@ -26,9 +26,18 @@ spec:
         env:
           - name: DEPLOYMENT_NAME
             value: "bob"
-
           - name: NETWORK
             value: {{ .Values.project.network }}
+          - name: RPCUSER
+            valueFrom:
+              secretKeyRef:
+                name: lightning-kube-secrets
+                key: rpcuser
+          - name: RPCPASS
+            valueFrom:
+              secretKeyRef:
+                name: lightning-kube-secrets
+                key: rpcpass
 
 #        ports:
 #        - containerPort: {{ .Values.service.internalPort }}
