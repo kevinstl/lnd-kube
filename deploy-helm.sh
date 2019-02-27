@@ -66,9 +66,9 @@ then
 fi
 
 
-#helm ${kubeContextArg} ${namespaceArg} install -n lightning-kube-lnd --set database=${database} ${serviceTypeArg} ${nodePortArg} --set image.tag=${imageTag} charts/lightning-kube-lnd
+#helm ${kubeContextArg} ${namespaceArg} install -n lnd-kube --set database=${database} ${serviceTypeArg} ${nodePortArg} --set image.tag=${imageTag} charts/lnd-kube
 
-helm ${kubeContextArg} ${namespaceArg} install -n lightning-kube-lnd${networkSuffix} --set database=${database} ${namespaceValueArg} ${serviceTypeArg} ${nodePortArg} ${networkArg} ${networkSuffixArg} --set image.tag=${imageTag} charts/lightning-kube-lnd
+helm ${kubeContextArg} ${namespaceArg} install -n lnd-kube${networkSuffix} --set database=${database} ${namespaceValueArg} ${serviceTypeArg} ${nodePortArg} ${networkArg} ${networkSuffixArg} --set image.tag=${imageTag} charts/lnd-kube
 
 if [ $? -eq 0 ]
 then

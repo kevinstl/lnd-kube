@@ -16,7 +16,7 @@ then
 fi
 
 
-helm ${kubeContextArg} del --purge lightning-kube-lnd${networkSuffix}
+helm ${kubeContextArg} del --purge lnd-kube${networkSuffix}
 
 #if [ $? -eq 0 ]
 #then

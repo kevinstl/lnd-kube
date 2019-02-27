@@ -5,7 +5,7 @@ pipeline {
   }
   environment {
     ORG               = 'kevinstl'
-    APP_NAME          = 'lightning-kube-lnd'
+    APP_NAME          = 'lnd-kube'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     DEPLOY_SIMNET     = 'true'
     DEPLOY_TESTNET    = 'false'
@@ -114,19 +114,19 @@ pipeline {
             if (DEPLOY_SIMNET == 'true') {
               container('go') {
                 sh './undeploy-helm.sh "" simnet || true'
-                sh './deploy-helm.sh "" lightning-kube \$(cat VERSION) lightning-kube-lnd-local LoadBalancer 30080 simnet'
+                sh './deploy-helm.sh "" lightning-kube \$(cat VERSION) lnd-kube-local LoadBalancer 30080 simnet'
               }
             }
             if (DEPLOY_TESTNET == 'true') {
               container('go') {
                 sh './undeploy-helm.sh "" testnet || true'
-                sh './deploy-helm.sh "" lightning-kube \$(cat VERSION) lightning-kube-lnd-local LoadBalancer 30080 testnet'
+                sh './deploy-helm.sh "" lightning-kube \$(cat VERSION) lnd-kube-local LoadBalancer 30080 testnet'
               }
             }
             if (DEPLOY_MAINNET == 'true') {
               container('go') {
                 sh './undeploy-helm.sh "" mainnet || true'
-                sh './deploy-helm.sh "" lightning-kube \$(cat VERSION) lightning-kube-lnd-local LoadBalancer 30080 mainnet'
+                sh './deploy-helm.sh "" lightning-kube \$(cat VERSION) lnd-kube-local LoadBalancer 30080 mainnet'
               }
             }
           }
@@ -183,7 +183,7 @@ def release(branch) {
 //    sh "mvn versions:set -DnewVersion=\$(cat VERSION)"
   }
 
-  dir ('./charts/lightning-kube-lnd') {
+  dir ('./charts/lnd-kube') {
     if (kubeEnv?.trim() != 'local') {
       container('go') {
         sh "make tag"
@@ -216,7 +216,7 @@ def release(branch) {
 
 def promote() {
 
-  dir ('./charts/lightning-kube-lnd') {
+  dir ('./charts/lnd-kube') {
     container('go') {
       sh 'jx step changelog --version v\$(cat ../../VERSION)'
 
