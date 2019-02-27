@@ -78,7 +78,7 @@ exec lnd \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="btcd" \
     "--$BACKEND.rpccert"="${baseRpcDir}/rpc.cert" \
-    "--$BACKEND.rpchost"="lightning-kube-btcd.lightning-kube-$NETWORK" \
+    "--$BACKEND.rpchost"="btcd-kube.lightning-kube-$NETWORK" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
