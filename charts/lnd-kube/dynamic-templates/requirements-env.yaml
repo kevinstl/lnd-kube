@@ -1,0 +1,13 @@
+dependencies:
+- name: lnd-kube
+  repository: http://jenkins-x-chartmuseum:8080
+  version: X_VERSION_X
+- alias: expose
+  name: exposecontroller
+  repository: http://chartmuseum.jenkins-x.io
+  version: 2.3.89
+- alias: cleanup
+  name: exposecontroller
+  repository: http://chartmuseum.jenkins-x.io
+  version: 2.3.89
+
