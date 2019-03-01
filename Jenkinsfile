@@ -7,10 +7,10 @@ pipeline {
     ORG               = 'kevinstl'
     APP_NAME          = 'lnd-kube'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
-    NEW_VERSION_LOCAL = 'true'
+    NEW_VERSION_LOCAL = 'false'
     DEPLOY_SIMNET     = 'false'
     DEPLOY_TESTNET    = 'false'
-    DEPLOY_MAINNET    = 'true'
+    DEPLOY_MAINNET    = 'false'
   }
   stages {
 
