@@ -26,7 +26,7 @@ RUN apk add --no-cache \
     make \
 &&  pwd \
 &&  git clone https://github.com/lightningnetwork/lnd.git /go/src/github.com/lightningnetwork/lnd \
-&&  git checkout tags/v0.5.2-beta
+&&  git checkout tags/v0.5.2-beta \
 &&  ls \
 &&  cd /go/src/github.com/lightningnetwork/lnd \
 &&  pwd \
