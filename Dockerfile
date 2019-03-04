@@ -32,7 +32,7 @@ RUN apk add --no-cache \
 &&  pwd \
 &&  ls -al  \
 &&  go get -d ./... \
-&&  make \
+&&  make || true \
 &&  make install
 
 # Start a new, final image to reduce size.
