@@ -30,8 +30,10 @@ RUN apk add --no-cache \
 &&  cd /go/src/github.com/lightningnetwork/lnd \
 &&  pwd \
 &&  ls \
-&&  go get -d ./... \
-&&  make \
+&&  go get -d ./...
+
+
+RUN  make \
 &&  make install
 
 # Start a new, final image to reduce size.
