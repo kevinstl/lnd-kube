@@ -33,7 +33,7 @@ RUN apk add --no-cache \
 &&  ls -al  \
 &&  go get -d ./... \
 &&  make || true \
-&&  make install
+&&  make install || true
 
 # Start a new, final image to reduce size.
 #FROM alpine as final
