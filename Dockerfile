@@ -26,14 +26,13 @@ RUN apk add --no-cache \
     make \
 &&  pwd \
 &&  git clone https://github.com/lightningnetwork/lnd.git /go/src/github.com/lightningnetwork/lnd \
-&&  ls \
-&&  cd /go/src/github.com/lightningnetwork/lnd \
+&&  ls
+
+RUN  cd /go/src/github.com/lightningnetwork/lnd \
 &&  pwd \
-&&  ls \
-&&  go get -d ./...
-
-
-RUN  make \
+&&  ls -al  \
+&&  go get -d ./... \
+&&  make \
 &&  make install
 
 # Start a new, final image to reduce size.
