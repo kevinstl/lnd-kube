@@ -78,9 +78,9 @@ pipeline {
       }
     }
 
-    stage('Promote to Environments') {
+    stage('Promote to Environments Feature') {
       when {
-        anyOf { branch 'master'; branch 'feature-*' }
+        branch 'feature-*'
       }
       steps {
         script {
@@ -91,19 +91,65 @@ pipeline {
       }
     }
 
-    stage('Deploy Local Testnet') {
+    stage('Promote to Environments Master') {
       when {
-        anyOf { branch 'master'; branch 'feature-*' }
-      }
-      environment {
-        DEPLOY_NAMESPACE = "lightning-kube-testnet"
+        branch 'master'
       }
       steps {
         script {
+          if (kubeEnv?.trim() != 'local') {
+            promote()
+          }
+        }
+      }
+    }
+
+    stage('Deploy Local Simnet') {
+      when {
+        branch 'feature-*'
+      }
+      environment {
+        DEPLOY_NAMESPACE = "lightning-kube-simnet"
+      }
+      steps {
+        script {
+
           if (kubeEnv?.trim() == 'local') {
-            if (DEPLOY_TESTNET == 'true') {
-              deployLocal("testnet")
+
+            if (DEPLOY_SIMNET == 'true') {
+              sh 'pwd'
+              sh 'ls -al'
+              sh 'git clone https://github.com/kevinstl/environment-jx-lightning-kube-simnet.git'
+              sh 'pwd'
+              sh 'ls -al'
+              sh 'cat ./environment-jx-lightning-kube-simnet/env/requirements.yaml'
+              sh 'cat ./charts/lnd-kube/dynamic-templates/requirements-env.yaml | sed "s/\\X_VERSION_X/$(cat ./VERSION)/" > ./environment-jx-lightning-kube-simnet/env/requirements.yaml'
+              sh 'cat ./environment-jx-lightning-kube-simnet/env/requirements.yaml'
+
+              if (NEW_VERSION_LOCAL == 'true') {
+                dir('./charts/lnd-kube') {
+                  container('go') {
+                    sh 'pwd'
+                    sh 'ls -al'
+                    //                  sh 'jx step changelog --version v\$(cat ../../VERSION)'
+                    sh 'jx step helm release'
+                    //                  sh 'jx promote --verbose -b --env lightning-kube-simnet --timeout 1h --version \$(cat ../../VERSION)'
+                  }
+                }
+              }
+
+              dir('./environment-jx-lightning-kube-simnet/env') {
+                container('go') {
+                  sh 'pwd'
+                  sh 'ls -al'
+                  sh 'jx step helm build'
+                  //                sh 'jx step helm apply --force=false'
+                  sh 'jx step helm apply --wait=false'
+                }
+              }
+
             }
+
           }
         }
       }
@@ -111,137 +157,54 @@ pipeline {
 
     stage('Deploy Local Mainnet') {
       when {
-        anyOf { branch 'master'; branch 'feature-*' }
+        branch 'feature-*'
       }
       environment {
         DEPLOY_NAMESPACE = "lightning-kube-mainnet"
       }
       steps {
         script {
+
           if (kubeEnv?.trim() == 'local') {
+
             if (DEPLOY_MAINNET == 'true') {
-              deployLocal("mainnet")
+              sh 'pwd'
+              sh 'ls -al'
+              sh 'git clone https://github.com/kevinstl/environment-jx-lightning-kube-mainnet.git'
+              sh 'pwd'
+              sh 'ls -al'
+              sh 'cat ./environment-jx-lightning-kube-mainnet/env/requirements.yaml'
+              sh 'cat ./charts/lnd-kube/dynamic-templates/requirements-env.yaml | sed "s/\\X_VERSION_X/$(cat ./VERSION)/" > ./environment-jx-lightning-kube-mainnet/env/requirements.yaml'
+              sh 'cat ./environment-jx-lightning-kube-mainnet/env/requirements.yaml'
+
+              if (NEW_VERSION_LOCAL == 'true') {
+                dir('./charts/lnd-kube') {
+                  container('go') {
+                    sh 'pwd'
+                    sh 'ls -al'
+                    //                  sh 'jx step changelog --version v\$(cat ../../VERSION)'
+                    sh 'jx step helm release'
+                    //                  sh 'jx promote --verbose -b --env lightning-kube-mainnet --timeout 1h --version \$(cat ../../VERSION)'
+                  }
+                }
+              }
+
+              dir('./environment-jx-lightning-kube-mainnet/env') {
+                container('go') {
+                  sh 'pwd'
+                  sh 'ls -al'
+                  sh 'jx step helm build'
+                  //                sh 'jx step helm apply --force=false'
+                  sh 'jx step helm apply --wait=false'
+                }
+              }
+
             }
+
           }
         }
       }
     }
-
-
-    stage('Promote to Environments Feature') {
-      when {
-        anyOf { branch 'master'; branch 'feature-*' }
-      }
-      steps {
-        script {
-          if (kubeEnv?.trim() != 'local') {
-            promote()
-          }
-        }
-      }
-    }
-
-//    stage('Deploy Local Simnet') {
-//      when {
-//        branch 'feature-*'
-//      }
-//      environment {
-//        DEPLOY_NAMESPACE = "lightning-kube-simnet"
-//      }
-//      steps {
-//        script {
-//
-//          if (kubeEnv?.trim() == 'local') {
-//
-//            if (DEPLOY_SIMNET == 'true') {
-//              sh 'pwd'
-//              sh 'ls -al'
-//              sh 'git clone https://github.com/kevinstl/environment-jx-lightning-kube-simnet.git'
-//              sh 'pwd'
-//              sh 'ls -al'
-//              sh 'cat ./environment-jx-lightning-kube-simnet/env/requirements.yaml'
-//              sh 'cat ./charts/lnd-kube/dynamic-templates/requirements-env.yaml | sed "s/\\X_VERSION_X/$(cat ./VERSION)/" > ./environment-jx-lightning-kube-simnet/env/requirements.yaml'
-//              sh 'cat ./environment-jx-lightning-kube-simnet/env/requirements.yaml'
-//
-//              if (NEW_VERSION_LOCAL == 'true') {
-//                dir('./charts/lnd-kube') {
-//                  container('go') {
-//                    sh 'pwd'
-//                    sh 'ls -al'
-//                    //                  sh 'jx step changelog --version v\$(cat ../../VERSION)'
-//                    sh 'jx step helm release'
-//                    //                  sh 'jx promote --verbose -b --env lightning-kube-simnet --timeout 1h --version \$(cat ../../VERSION)'
-//                  }
-//                }
-//              }
-//
-//              dir('./environment-jx-lightning-kube-simnet/env') {
-//                container('go') {
-//                  sh 'pwd'
-//                  sh 'ls -al'
-//                  sh 'jx step helm build'
-//                  //                sh 'jx step helm apply --force=false'
-//                  sh 'jx step helm apply --wait=false'
-//                }
-//              }
-//
-//            }
-//
-//          }
-//        }
-//      }
-//    }
-//
-//    stage('Deploy Local Mainnet') {
-//      when {
-//        branch 'feature-*'
-//      }
-//      environment {
-//        DEPLOY_NAMESPACE = "lightning-kube-mainnet"
-//      }
-//      steps {
-//        script {
-//
-//          if (kubeEnv?.trim() == 'local') {
-//
-//            if (DEPLOY_MAINNET == 'true') {
-//              sh 'pwd'
-//              sh 'ls -al'
-//              sh 'git clone https://github.com/kevinstl/environment-jx-lightning-kube-mainnet.git'
-//              sh 'pwd'
-//              sh 'ls -al'
-//              sh 'cat ./environment-jx-lightning-kube-mainnet/env/requirements.yaml'
-//              sh 'cat ./charts/lnd-kube/dynamic-templates/requirements-env.yaml | sed "s/\\X_VERSION_X/$(cat ./VERSION)/" > ./environment-jx-lightning-kube-mainnet/env/requirements.yaml'
-//              sh 'cat ./environment-jx-lightning-kube-mainnet/env/requirements.yaml'
-//
-//              if (NEW_VERSION_LOCAL == 'true') {
-//                dir('./charts/lnd-kube') {
-//                  container('go') {
-//                    sh 'pwd'
-//                    sh 'ls -al'
-//                    //                  sh 'jx step changelog --version v\$(cat ../../VERSION)'
-//                    sh 'jx step helm release'
-//                    //                  sh 'jx promote --verbose -b --env lightning-kube-mainnet --timeout 1h --version \$(cat ../../VERSION)'
-//                  }
-//                }
-//              }
-//
-//              dir('./environment-jx-lightning-kube-mainnet/env') {
-//                container('go') {
-//                  sh 'pwd'
-//                  sh 'ls -al'
-//                  sh 'jx step helm build'
-//                  //                sh 'jx step helm apply --force=false'
-//                  sh 'jx step helm apply --wait=false'
-//                }
-//              }
-//
-//            }
-//
-//          }
-//        }
-//      }
-//    }
 
 
 //    stage('Deploy Local') {
@@ -359,84 +322,77 @@ def release(branch) {
 
 def promote() {
 
-  dir ('./charts/lnd-kube') {
 
-    if (DEPLOY_SIMNET == 'true') {
-      promoteNetwork("simnet")
+  if (DEPLOY_SIMNET == 'true') {
+
+    if (DEPLOY_PVC == 'true') {
+      container('go') {
+        sh './scripts/create-pv.sh "" lightning-kube-simnet -simnet 5Gi'
+      }
     }
 
-    if (DEPLOY_TESTNET == 'true') {
-      promoteNetwork("testnet")
+    container('go') {
+      sh 'jx step changelog --version v\$(cat ../../VERSION)'
+      // release the helm chart
+      sh 'jx step helm release'
+      // promote through all 'Auto' promotion Environments
+//      sh 'jx promote --verbose -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
+      sh 'jx promote --verbose -b --env lightning-kube-simnet --timeout 1h --version \$(cat ../../VERSION)'
+    }
+  }
+  if (DEPLOY_TESTNET == 'true') {
+
+    if (DEPLOY_PVC == 'true') {
+      container('go') {
+        sh './scripts/create-pv.sh "" lightning-kube-testnet -testnet 25Gi'
+      }
     }
 
-    if (DEPLOY_MAINNET == 'true') {
-      promoteNetwork("mainnet")
+    container('go') {
+      sh 'jx step changelog --version v\$(cat ../../VERSION)'
+      // release the helm chart
+      sh 'jx step helm release'
+      // promote through all 'Auto' promotion Environments
+//      sh 'jx promote --verbose -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
+      sh 'jx promote --verbose -b --env lightning-kube-testnet --timeout 1h --version \$(cat ../../VERSION)'
+    }
+  }
+  if (DEPLOY_MAINNET == 'true') {
+
+    if (DEPLOY_PVC == 'true') {
+      container('go') {
+        sh './scripts/create-pv.sh "" lightning-kube-mainnet -mainnet 275Gi'
+      }
+    }
+
+    container('go') {
+      sh 'jx step changelog --version v\$(cat ../../VERSION)'
+      // release the helm chart
+      sh 'jx step helm release'
+      // promote through all 'Auto' promotion Environments
+//      sh 'jx promote --verbose -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
+      sh 'jx promote --verbose -b --env lightning-kube-mainnet --timeout 1h --version \$(cat ../../VERSION)'
     }
   }
 
+//  dir ('./charts/lnd-kube') {
+//    container('go') {
+//      sh 'jx step changelog --version v\$(cat ../../VERSION)'
+//
+//      // release the helm chart
+//      sh 'jx step helm release'
+//
+//      // promote through all 'Auto' promotion Environments
+//      sh 'jx promote --verbose -b --all-auto --timeout 1h --version \$(cat ../../VERSION)'
+//    }
+//  }
+
 }
-
-def promoteNetwork(network) {
-
-
-  container('go') {
-    sh 'jx step changelog --version v\$(cat ../../VERSION)'
-    // release the helm chart
-    sh 'jx step helm release'
-    // promote through all 'Auto' promotion Environments
-    def promoteCommand = "jx promote --verbose -b --env lightning-kube-${network} --timeout 1h --version \$(cat ../../VERSION)"
-//    sh "jx promote --verbose -b --env lightning-kube-${network} --timeout 1h --version \$(cat ../../VERSION)"
-    sh "${promoteCommand}"
-  }
-}
-
 
 def postBuild() {
   script {
     if (kubeEnv?.trim() != 'local') {
       sh "jx step post build --image $DOCKER_REGISTRY/$ORG/$APP_NAME:\$(cat VERSION)"
-    }
-  }
-}
-
-def deployLocal(network) {
-
-  script {
-
-    if (NEW_VERSION_LOCAL == 'true') {
-      dir('./charts/lnd-kube') {
-        container('go') {
-          sh 'jx step helm release'
-        }
-      }
-    }
-
-    sh 'pwd'
-    sh 'ls -al'
-    sh "git clone https://github.com/kevinstl/environment-jx-lightning-kube-${network}.git"
-
-    def envProjectDir = "./environment-jx-lightning-kube-${network}"
-    dir(envProjectDir) {
-      container('go') {
-        sh 'cat ./env/requirements.yaml'
-        sh 'git fetch'
-        sh "git checkout local"
-        sh "./scripts/replace-version.sh ./env/requirements.yaml \"lnd-kube\" \"  version: \$(cat ../VERSION)\""
-        sh 'git add .'
-        sh 'git commit -m \"release \$(cat ../VERSION)\"'
-        sh 'git push -u origin local'
-      }
-    }
-
-    def envProjectSubDir = "./environment-jx-lightning-kube-${network}/env"
-    dir(envProjectSubDir) {
-      container('go') {
-        sh 'pwd'
-        sh 'ls -al'
-        sh 'cat ./requirements.yaml'
-        sh 'jx step helm build'
-        sh 'jx step helm apply --wait=false'
-      }
     }
   }
 }
