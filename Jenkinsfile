@@ -128,7 +128,7 @@ pipeline {
     }
 
 
-    stage('Promote to Environments Feature') {
+    stage('Promote to Environments') {
       when {
         anyOf { branch 'master'; branch 'feature-*' }
       }

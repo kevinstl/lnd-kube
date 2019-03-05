@@ -1,5 +1,6 @@
 #FROM golang:1.10-alpine as builder
-FROM golang:1.10-alpine
+#FROM golang:1.10-alpine
+FROM golang:1.12.0-alpine3.9
 
 MAINTAINER Olaoluwa Osuntokun <lightning.engineering>
 
@@ -28,12 +29,15 @@ RUN apk add --no-cache \
 &&  git clone https://github.com/lightningnetwork/lnd.git /go/src/github.com/lightningnetwork/lnd \
 &&  ls \
 &&  cd /go/src/github.com/lightningnetwork/lnd \
+#&&  git fetch \
 #&&  git checkout tags/v0.5.2-beta \
 &&  pwd \
 &&  ls -al  \
 &&  go get -d ./... \
-&&  make || true \
-&&  make install || true
+#&&  make || true \
+&&  make \
+#&&  make install || true
+&&  make install
 
 # Start a new, final image to reduce size.
 #FROM alpine as final
