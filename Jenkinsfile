@@ -8,9 +8,9 @@ pipeline {
     APP_NAME          = 'lnd-kube'
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     NEW_VERSION_LOCAL = 'true'
-//    DEPLOY_SIMNET     = 'true'
+    DEPLOY_SIMNET     = 'false'
     DEPLOY_TESTNET    = 'false'
-//    DEPLOY_MAINNET    = 'false'
+    DEPLOY_MAINNET    = 'true'
   }
   stages {
 
@@ -86,6 +86,24 @@ pipeline {
         script {
           if (kubeEnv?.trim() != 'local') {
             promote()
+          }
+        }
+      }
+    }
+
+    stage('Deploy Local Simnet') {
+      when {
+        anyOf { branch 'master'; branch 'feature-*' }
+      }
+      environment {
+        DEPLOY_NAMESPACE = "lightning-kube-simnet"
+      }
+      steps {
+        script {
+          if (kubeEnv?.trim() == 'local') {
+            if (DEPLOY_TESTNET == 'true') {
+              deployLocal("simnet")
+            }
           }
         }
       }
