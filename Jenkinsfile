@@ -128,19 +128,6 @@ pipeline {
     }
 
 
-    stage('Promote to Environments') {
-      when {
-        anyOf { branch 'master'; branch 'feature-*' }
-      }
-      steps {
-        script {
-          if (kubeEnv?.trim() != 'local') {
-            promote()
-          }
-        }
-      }
-    }
-
 //    stage('Deploy Local Simnet') {
 //      when {
 //        branch 'feature-*'
