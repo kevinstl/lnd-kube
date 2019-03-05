@@ -390,6 +390,8 @@ def deployLocal(network) {
 
   script {
 
+    sh 'echo debug1'
+
     if (NEW_VERSION_LOCAL == 'true') {
       dir('./charts/lnd-kube') {
         container('go') {
@@ -398,9 +400,13 @@ def deployLocal(network) {
       }
     }
 
+    sh 'echo debug2'
+
     sh 'pwd'
     sh 'ls -al'
     sh "git clone https://github.com/kevinstl/environment-jx-lightning-kube-${network}.git"
+
+    sh 'echo debug3'
 
     def envProjectDir = "./environment-jx-lightning-kube-${network}"
     dir(envProjectDir) {
