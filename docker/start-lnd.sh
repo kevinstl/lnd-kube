@@ -45,7 +45,8 @@ DEBUG=$(set_default "$DEBUG" "debug")
 NETWORK=$(set_default "$NETWORK" "simnet")
 CHAIN=$(set_default "$CHAIN" "bitcoin")
 #BACKEND="btcd"
-BACKEND="bitcoind"
+BACKEND=$(set_default "$BACKEND" "btcd")
+
 if [[ "$CHAIN" == "litecoin" ]]; then
     BACKEND="ltcd"
 fi
@@ -69,6 +70,11 @@ baseDir="/mnt/${NETWORK}"
 baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
+rpcCertArg=""
+if [[ "$BACKEND" == "btcd" ]]; then
+    rpcCertArg="--$BACKEND.rpccert"="${baseRpcDir}/rpc.cert"
+fi
+
 mkdir -p ${baseRpcDir}
 
 exec lnd \
@@ -77,12 +83,14 @@ exec lnd \
     --logdir="${baseLndDir}${deploymentNameDir}/log" \
     "--$CHAIN.active" \
     "--$CHAIN.$NETWORK" \
-    "--$CHAIN.node"="btcd" \
-    "--$BACKEND.rpccert"="${baseRpcDir}/rpc.cert" \
+    "--$CHAIN.node"="$BACKEND" \
+    "$rpcCertArg" \
     "--$BACKEND.rpchost"="btcd-kube.lightning-kube-$NETWORK" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
     "$@"
 
+
+#    "--$CHAIN.node"="btcd" \
 

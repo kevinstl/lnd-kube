@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ template "fullname" . }}-alice
+  name: {{ template "fullname" . }}-bitcoind-alice
   namespace: {{ .Values.project.namespace }}
   labels:
     draft: {{ default "draft-app" .Values.draft }}
@@ -26,6 +26,8 @@ spec:
         env:
           - name: DEPLOYMENT_NAME
             value: "alice"
+          - name: BACKEND
+            value: "bitcoind"
           - name: NETWORK
             value: {{ .Values.project.network }}
           - name: RPCUSER
