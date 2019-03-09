@@ -56,6 +56,25 @@ pipeline {
       }
     }
 
+    stage('Prepare Deployments') {
+      steps {
+        script {
+          if (DEPLOY_SIMNET == 'true') {
+            prepareBtcdDeployment()
+          }
+          if (DEPLOY_REGTEST == 'true') {
+            prepareBitcoinddDeployment()
+          }
+          if (DEPLOY_TESTNET == 'true') {
+            prepareBtcdDeployment()
+          }
+          if (DEPLOY_MAINNET == 'true') {
+            prepareBtcdDeployment()
+          }
+        }
+      }
+    }
+
 
     stage('Build Release Feature') {
       when {
@@ -102,7 +121,7 @@ pipeline {
       steps {
         script {
           if (kubeEnv?.trim() == 'local') {
-            if (DEPLOY_TESTNET == 'true') {
+            if (DEPLOY_SIMNET == 'true') {
               deployLocal("simnet")
             }
           }
@@ -339,4 +358,14 @@ def deployLocal(network) {
       }
     }
   }
+}
+
+def prepareBtcdDeployment() {
+  sh 'cp ./charts/lnd-kube/dynamic-templates/deployment-alice.yaml ./charts/lnd-kube/templates'
+  sh 'cp ./charts/lnd-kube/dynamic-templates/deployment-bob.yaml ./charts/lnd-kube/templates'
+}
+
+def prepareBitcoinddDeployment() {
+  sh 'cp ./charts/lnd-kube/dynamic-templates/deployment-bitcoind-alice.yaml ./charts/lnd-kube/templates'
+  sh 'cp ./charts/lnd-kube/dynamic-templates/deployment-bitcoind-bob.yaml ./charts/lnd-kube/templates'
 }
