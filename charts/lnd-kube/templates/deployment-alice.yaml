@@ -80,7 +80,8 @@ spec:
       volumes:
           - name: lightning-kube-drive
             persistentVolumeClaim:
-              claimName: lightning-kube-pvc{{ .Values.project.networkSuffix }}
+#              claimName: lightning-kube-pvc{{ .Values.project.networkSuffix }}
+              claimName: bitcoind-kube-pvc{{ .Values.project.networkSuffix }}
 
 
       terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}

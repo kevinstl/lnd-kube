@@ -255,6 +255,10 @@ def promote() {
       promoteNetwork("simnet")
     }
 
+    if (DEPLOY_REGTEST == 'true') {
+      promoteNetwork("regtest")
+    }
+
     if (DEPLOY_TESTNET == 'true') {
       promoteNetwork("testnet")
     }
