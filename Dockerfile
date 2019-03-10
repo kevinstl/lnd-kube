@@ -69,6 +69,8 @@ COPY "docker/start-lnd.sh" /go/src/github.com/lightningnetwork/lnd/docker/lnd/
 RUN ls -al /go/src/github.com/lightningnetwork/lnd/docker/lnd
 RUN chmod +x /go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh
 
+RUN cat /go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh
+
 #RUN mkdir -p "/mnt/lk/shared/rpc"
 
 ENTRYPOINT ["/go/src/github.com/lightningnetwork/lnd/docker/lnd/start-lnd.sh"]
