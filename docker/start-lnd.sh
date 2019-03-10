@@ -71,10 +71,13 @@ baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
 rpcCertArg=""
-zmqpubrawblockArg=""
-zmqpubrawtxArg=""
 if [[ "$BACKEND" == "btcd" ]]; then
     rpcCertArg="--$BACKEND.rpccert=${baseRpcDir}/rpc.cert "
+fi
+
+zmqpubrawblockArg=""
+zmqpubrawtxArg=""
+if [[ "$BACKEND" == "bitcoind" ]]; then
     zmqpubrawblockArg="--$BACKEND.zmqpubrawblock=tcp://127.0.0.1:28332 "
     zmqpubrawtxArg="--$BACKEND.zmqpubrawtx=tcp://127.0.0.1:28333 "
 fi
