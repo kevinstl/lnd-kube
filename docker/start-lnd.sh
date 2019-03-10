@@ -71,8 +71,12 @@ baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
 rpcCertArg=""
+zmqpubrawblockArg=""
+zmqpubrawtxArg=""
 if [[ "$BACKEND" == "btcd" ]]; then
-    rpcCertArg="--$BACKEND.rpccert"="${baseRpcDir}/rpc.cert"
+    rpcCertArg="--$BACKEND.rpccert=${baseRpcDir}/rpc.cert "
+    zmqpubrawblockArg="--$BACKEND.zmqpubrawblock=tcp://127.0.0.1:28332 "
+    zmqpubrawtxArg="--$BACKEND.zmqpubrawtx=tcp://127.0.0.1:28333 "
 fi
 
 mkdir -p ${baseRpcDir}
@@ -85,6 +89,8 @@ exec lnd \
     "--$CHAIN.$NETWORK" \
     "--$CHAIN.node"="$BACKEND" \
     "$rpcCertArg" \
+    "$zmqpubrawblockArg" \
+    "$zmqpubrawtxArg" \
     "--$BACKEND.rpchost"="btcd-kube.lightning-kube-$NETWORK" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
