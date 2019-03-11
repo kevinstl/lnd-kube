@@ -70,11 +70,13 @@ baseDir="/mnt/${NETWORK}"
 baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
+
+rpcHostArg="--$BACKEND.rpchost=$BACKEND-kube.lightning-kube-$NETWORK:18443 "
+
+
 rpcCertArg=""
-rpcHostArg=""
 if [[ "$BACKEND" == "btcd" ]]; then
     rpcCertArg="--$BACKEND.rpccert=${baseRpcDir}/rpc.cert "
-    rpcHostArg="--$BACKEND.rpchost=$BACKEND-kube.lightning-kube-$NETWORK"
 fi
 
 zmqpubrawblockArg=""
