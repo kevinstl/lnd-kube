@@ -94,7 +94,7 @@ exec lnd \
     "$rpcCertArg" \
     "$zmqpubrawblockArg" \
     "$zmqpubrawtxArg" \
-    "--$BACKEND.rpchost"="btcd-kube.lightning-kube-$NETWORK" \
+    "--$BACKEND.rpchost"="$BACKEND-kube.lightning-kube-$NETWORK" \
     "--$BACKEND.rpcuser"="$RPCUSER" \
     "--$BACKEND.rpcpass"="$RPCPASS" \
     --debuglevel="$DEBUG" \
@@ -102,4 +102,5 @@ exec lnd \
 
 
 #    "--$CHAIN.node"="btcd" \
+#    "--$BACKEND.rpchost"="btcd-kube.lightning-kube-$NETWORK" \
 
