@@ -78,10 +78,10 @@ fi
 zmqpubrawblockArg=""
 zmqpubrawtxArg=""
 if [[ "$BACKEND" == "bitcoind" ]]; then
-#    zmqpubrawblockArg="--$BACKEND.zmqpubrawblock=tcp://127.0.0.1:28332 "
-#    zmqpubrawtxArg="--$BACKEND.zmqpubrawtx=tcp://127.0.0.1:28333 "
-    zmqpubrawblockArg="--$BACKEND.zmqpubrawblock=tcp://$BACKEND-kube.lightning-kube-$NETWORK:28332 "
-    zmqpubrawtxArg="--$BACKEND.zmqpubrawtx=tcp://$BACKEND-kube.lightning-kube-$NETWORK:28333 "
+    zmqpubrawblockArg="--$BACKEND.zmqpubrawblock=tcp://127.0.0.1:28332 "
+    zmqpubrawtxArg="--$BACKEND.zmqpubrawtx=tcp://127.0.0.1:28333 "
+#    zmqpubrawblockArg="--$BACKEND.zmqpubrawblock=tcp://$BACKEND-kube.lightning-kube-$NETWORK:28332 "
+#    zmqpubrawtxArg="--$BACKEND.zmqpubrawtx=tcp://$BACKEND-kube.lightning-kube-$NETWORK:28333 "
 fi
 
 mkdir -p ${baseRpcDir}
