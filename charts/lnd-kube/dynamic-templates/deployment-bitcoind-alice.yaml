@@ -25,7 +25,7 @@ spec:
 
         env:
           - name: DEPLOYMENT_NAME
-            value: "bitcoind-alice"
+            value: "alice"
           - name: BACKEND
             value: "bitcoind"
           - name: NETWORK
@@ -66,12 +66,12 @@ spec:
         - mountPath: /mnt/{{ .Values.project.network }}/shared/rpc
           name: lightning-kube-drive
           subPath: {{ .Values.project.network }}/shared/rpc
-        - mountPath: /mnt/{{ .Values.project.network }}/lnd/bitcoind-alice/data
+        - mountPath: /mnt/{{ .Values.project.network }}/lnd/alice/data
           name: lightning-kube-drive
-          subPath: {{ .Values.project.network }}/lnd/bitcoind-alice/data
-        - mountPath: /mnt/{{ .Values.project.network }}/lnd/bitcoind-alice/log
+          subPath: {{ .Values.project.network }}/lnd/alice/data
+        - mountPath: /mnt/{{ .Values.project.network }}/lnd/alice/log
           name: lightning-kube-drive
-          subPath: {{ .Values.project.network }}/lnd/bitcoind-alice/log
+          subPath: {{ .Values.project.network }}/lnd/alice/log
 
 #      volumes:
 #      - name: lightning-kube-drive
