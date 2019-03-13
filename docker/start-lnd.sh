@@ -71,7 +71,8 @@ baseLndDir=${baseDir}/lnd
 baseRpcDir=${baseDir}/shared/rpc
 
 
-rpcHostArg="--$BACKEND.rpchost=$BACKEND-kube.lightning-kube-$NETWORK:18443"
+#rpcHostArg="--$BACKEND.rpchost=$BACKEND-kube.lightning-kube-$NETWORK:18443"
+rpcHostArg="--$BACKEND.rpchost=$BACKEND-kube.lightning-kube-$NETWORK"
 
 
 rpcCertArg=""
