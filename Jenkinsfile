@@ -9,9 +9,9 @@ pipeline {
     CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
     NEW_VERSION_LOCAL = 'true'
     DEPLOY_SIMNET     = 'false'
-    DEPLOY_REGTEST    = 'true'
+    DEPLOY_REGTEST    = 'false'
     DEPLOY_TESTNET    = 'false'
-    DEPLOY_MAINNET    = 'false'
+    DEPLOY_MAINNET    = 'true'
   }
   stages {
 
@@ -69,7 +69,8 @@ pipeline {
             prepareBtcdDeployment()
           }
           if (DEPLOY_MAINNET == 'true') {
-            prepareBtcdDeployment()
+//            prepareBtcdDeployment()
+            prepareBitcoinddDeployment()
           }
         }
       }
