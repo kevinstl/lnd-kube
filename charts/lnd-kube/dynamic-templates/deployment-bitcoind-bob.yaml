@@ -67,12 +67,12 @@ spec:
         - mountPath: /mnt/{{ .Values.project.network }}/shared/rpc
           name: lightning-kube-drive
           subPath: {{ .Values.project.network }}/shared/rpc
-        - mountPath: /mnt/{{ .Values.project.network }}/lnd/bob/data
+        - mountPath: /mnt/{{ .Values.project.network }}/lnd/bitcoin-bob/data
           name: lightning-kube-drive
-          subPath: {{ .Values.project.network }}/lnd/bob/data
+          subPath: {{ .Values.project.network }}/lnd/bitcoin-bob/data
         - mountPath: /mnt/{{ .Values.project.network }}/lnd/bob/log
           name: lightning-kube-drive
-          subPath: {{ .Values.project.network }}/lnd/bob/log
+          subPath: {{ .Values.project.network }}/lnd/bitcoin-bob/log
 
 #      volumes:
 #      - name: lightning-kube-drive
