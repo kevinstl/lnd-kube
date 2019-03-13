@@ -25,7 +25,7 @@ spec:
 
         env:
           - name: DEPLOYMENT_NAME
-            value: "bob"
+            value: "bitcoind-bob"
           - name: BACKEND
             value: "bitcoind"
           - name: NETWORK
