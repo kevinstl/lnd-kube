@@ -1,0 +1,89 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}-bitcoind-alice
+  namespace: {{ .Values.project.namespace }}
+  labels:
+    draft: {{ default "draft-app" .Values.draft }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        draft: {{ default "draft-app" .Values.draft }}
+        app: {{ template "fullname" . }}-alice
+{{- if .Values.podAnnotations }}
+      annotations:
+{{ toYaml .Values.podAnnotations | indent 8 }}
+{{- end }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+        env:
+          - name: DEPLOYMENT_NAME
+            value: "alice"
+          - name: BACKEND
+            value: "bitcoind"
+          - name: NETWORK
+            value: {{ .Values.project.network }}
+          - name: RPCUSER
+            valueFrom:
+              secretKeyRef:
+                name: lightning-kube-secrets
+                key: rpcuser
+          - name: RPCPASS
+            valueFrom:
+              secretKeyRef:
+                name: lightning-kube-secrets
+                key: rpcpass
+
+#        ports:
+#        - containerPort: {{ .Values.service.internalPort }}
+
+#        livenessProbe:
+#          httpGet:
+#            path: {{ .Values.probePath }}
+#            port: {{ .Values.service.internalPort }}
+#          initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
+#          periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
+#          successThreshold: {{ .Values.livenessProbe.successThreshold }}
+#          timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
+#        readinessProbe:
+#          httpGet:
+#            path: {{ .Values.probePath }}
+#            port: {{ .Values.service.internalPort }}
+#          periodSeconds: {{ .Values.readinessProbe.periodSeconds }}
+#          successThreshold: {{ .Values.readinessProbe.successThreshold }}
+#          timeoutSeconds: {{ .Values.readinessProbe.timeoutSeconds }}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
+
+        volumeMounts:
+        - mountPath: /mnt/{{ .Values.project.network }}/shared/rpc
+          name: lightning-kube-drive
+          subPath: {{ .Values.project.network }}/shared/rpc
+        - mountPath: /mnt/{{ .Values.project.network }}/lnd/alice/data
+          name: lightning-kube-drive
+          subPath: {{ .Values.project.network }}/lnd/alice/data
+        - mountPath: /mnt/{{ .Values.project.network }}/lnd/alice/log
+          name: lightning-kube-drive
+          subPath: {{ .Values.project.network }}/lnd/alice/log
+
+#      volumes:
+#      - name: lightning-kube-drive
+#        hostPath:
+#          path: /network-drive/btcd
+#          type: DirectoryOrCreate
+
+      volumes:
+          - name: lightning-kube-drive
+            persistentVolumeClaim:
+#              claimName: lightning-kube-pvc{{ .Values.project.networkSuffix }}
+              claimName: bitcoind-kube-pvc{{ .Values.project.networkSuffix }}
+
+
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
