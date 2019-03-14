@@ -21,9 +21,16 @@ Requirments:
 ```
 *See [Lightning Kube](https://github.com/kevinstl/lightning-kube) for help with requirements.
 
-1. Clone this project. `git clone https://github.com/kevinstl/lnd-kube ~/Developer/projects/lnd-kube`
+1. Clone this project and the jx environment projects. 
+```
+git clone https://github.com/kevinstl/lnd-kube ~/Developer/projects/lnd-kube
+git clone https://github.com/kevinstl/environment-jx-lightning-kube-regtest
+git clone https://github.com/kevinstl/environment-jx-lightning-kube-simnet
+git clone https://github.com/kevinstl/environment-jx-lightning-kube-testnet
+git clone https://github.com/kevinstl/environment-jx-lightning-kube-mainnet
+```
 2. Change to project directory `cd ~/Developer/projects/lnd-kube`
 3. Change the following variables in the [Jenkinsfile](./Jenkinsfile) to match your setup: ORG, APP_NAME, GITHUB_ADDRESS and ENV_REPO_PREFIX.
-4. Import this project into your Jenkins X instance. `jx import`
+4. Import this project and the jx environment projects into your Jenkins X instance. `jx import`
 
 If the installation is successful you should see the lnd pod running from [kubernetes dashboard](http://minikube-easy:30000/#!/pod?namespace=lightning-kube).
